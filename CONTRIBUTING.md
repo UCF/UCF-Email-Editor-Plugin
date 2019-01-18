@@ -123,7 +123,7 @@ In general, we keep conversations about distributed UCF WordPress projects on th
 Whenever you post to the ucf-wp Slack, including your **job title**, information about the **college or department** you work for, as well as the **site(s) you need help with** will help us help you more effectively.
 
 ### General questions
-If you have a general question about the plugin, design decisions, or any other question that isn't a help request, please post it in the [#prj-UCF-Email-Editor-Plugin Slack channel](https://ucf-wp.slack.com/messages/prj-UCF-Email-Editor-Plugin/). {{Edit this copy as needed!}}
+If you have a general question about the plugin, design decisions, or any other question that isn't a help request, please post it in the [#prj-UCF-Email-Editor-Plugin Slack channel](https://ucf-wp.slack.com/messages/prj-UCF-Email-Editor-Plugin/).
 
 ### Help
 If you need help with using this plugin on your site, check out our [project documentation](https://github.com/UCF/UCF-Email-Editor-Plugin/wiki).  If you can't find the answer to your question there, please drop us a line in the [#help-plugins Slack channel](https://ucf-wp.slack.com/messages/help-plugins/).  You don't need to @mention anyone specific, but **please note that you're using the UCF Email Editor Plugin when posting your question** and include a link to your site if it's relevant to your question.
