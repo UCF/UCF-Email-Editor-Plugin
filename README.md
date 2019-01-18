@@ -1,47 +1,40 @@
-=== UCF Email Editor Plugin ===
-Contributors: ucfwebcom
-Requires at least: 4.9.7
-Tested up to: 4.9.7
-Stable tag: 0.0.0
-Requires PHP: 5.4
-License: GPLv3 or later
-License URI: http://www.gnu.org/copyleft/gpl-3.0.html
+# UCF Email Editor Plugin #
 
 {{Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.}}
 
 
-== Description ==
+## Description ##
 
 {{This is the long description.  No limit, and you can use Markdown (as well as in the following sections).}}
 
 
-== Documentation ==
+## Documentation ##
 
 Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email-Editor-Plugin/wiki) for detailed information about this plugin, installation instructions, and more.
 
 
-== Changelog ==
+## Changelog ##
 
 = 1.0.0 = {{Update number as needed!}}
 * Initial release
 
 
-== Upgrade Notice ==
+## Upgrade Notice ##
 
 n/a
 
 
-== Development ==
+## Development ##
 
 Note that compiled, minified css and js {{edit this list if the plugin doesn't include css/js!}} files are included within the repo.  Changes to these files should be tracked via git (so that users installing the plugin using traditional installation methods will have a working plugin out-of-the-box.)
 
 [Enabling debug mode](https://codex.wordpress.org/Debugging_in_WordPress) in your `wp-config.php` file is recommended during development to help catch warnings and bugs.
 
-= Requirements =
+### Requirements ###
 * node
 * gulp-cli
 
-= Instructions =
+### Instructions ###
 1. Clone the UCF-Email-Editor-Plugin repo into your local development environment, within your WordPress installation's `plugins/` directory: `git clone https://github.com/UCF/UCF-Email-Editor-Plugin.git`
 2. `cd` into the new UCF-Email-Editor-Plugin directory, and run `npm install` to install required packages for development into `node_modules/` within the repo
 3. Optional: If you'd like to enable [BrowserSync](https://browsersync.io) for local development, or make other changes to this project's default gulp configuration, copy `gulp-config.template.json`, make any desired changes, and save as `gulp-config.json`.
@@ -55,10 +48,10 @@ Note that compiled, minified css and js {{edit this list if the plugin doesn't i
 6. Configure plugin settings from the WordPress admin under "{{Your plugin's admin menu label}}".
 7. Run `gulp watch` to continuously watch changes to scss and js files.{{edit this list if the plugin doesn't include css/js!}}  If you enabled BrowserSync in `gulp-config.json`, it will also reload your browser when plugin files change.
 
-= Other Notes =
+### Other Notes ###
 * This plugin's README.md file is automatically generated. Please only make modifications to the README.txt file, and make sure the `gulp readme` command has been run before committing README changes.  See the [contributing guidelines](https://github.com/UCF/UCF-Email-Editor-Plugin/blob/master/CONTRIBUTING.md) for more information.
 
 
-== Contributing ==
+## Contributing ##
 
 Want to submit a bug report or feature request?  Check out our [contributing guidelines](https://github.com/UCF/UCF-Email-Editor-Plugin/blob/master/CONTRIBUTING.md) for more information.  We'd love to hear from you!
