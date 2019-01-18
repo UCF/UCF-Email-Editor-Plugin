@@ -11,3 +11,5 @@ GitHub Plugin URI: UCF/UCF-Email-Editor-Plugin
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
+
+include_once 'common/functions.php';
