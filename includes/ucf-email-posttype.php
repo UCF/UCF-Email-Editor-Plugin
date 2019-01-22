@@ -66,7 +66,7 @@ if ( ! class_exists( 'UCF_Email_PostType' ) ) {
 			$args = array(
 				'label'                 => __( $plural, self::$text_domain ),
 				'description'           => __( $plural, self::$text_domain ),
-				'labels'                => self::labels( $singular, $plural, self::$text_domain ),
+				'labels'                => self::labels( $singular, $plural ),
 				'supports'              => array( 'title', 'editor', 'revisions', 'custom-fields', ),
 				'taxonomies'            => array(),
 				'hierarchical'          => false,
@@ -79,7 +79,7 @@ if ( ! class_exists( 'UCF_Email_PostType' ) ) {
 				'show_in_nav_menus'     => true,
 				'can_export'            => true,
 				'has_archive'           => true,
-				'rewrite'               => false,
+				'rewrite'               => true,
 				'exclude_from_search'   => false,
 				'publicly_queryable'    => true,
 				'capability_type'       => 'post',
