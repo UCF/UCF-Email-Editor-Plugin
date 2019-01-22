@@ -22,10 +22,18 @@ include_once 'templates/templates.php';
 if ( ! function_exists( 'ucf_email_editor_plugin_activation' ) ) {
 	function ucf_email_editor_plugin_activation() {
 		UCF_Email_PostType::register();
-		return;
+		flush_rewrite_rules();
 	}
 	register_activation_hook( UCF_EMAIL_EDITOR__PLUGIN_FILE, 'ucf_email_editor_plugin_activation' );
 }
+
+if ( ! function_exists( 'ucf_email_editor_plugin_deactivation' ) ) {
+	function ucf_email_editor_plugin_deactivation() {
+		flush_rewrite_rules();
+	}
+	register_deactivation_hook( UCF_EMAIL_EDITOR__PLUGIN_FILE, 'ucf_email_editor_plugin_deactivation' );
+}
+
 
 if ( ! function_exists( 'ucf_email_editor_plugins_loaded' ) ) {
 	function ucf_email_editor_plugins_loaded() {
