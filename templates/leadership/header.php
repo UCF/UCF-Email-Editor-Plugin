@@ -12,7 +12,7 @@
     <?php wp_strip_all_tags( the_title() ); ?>
   </title>
 
-  <?php get_template_part( 'templates/css' ); ?>
+  <?php include_once( 'css.php' ); ?>
 </head>
 
 <body>
