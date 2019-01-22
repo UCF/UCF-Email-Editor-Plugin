@@ -10,7 +10,7 @@
   the_post();
 ?>
 
-<?php get_template_part( 'includes/email-templates/header' ); ?>
+<?php get_template_part( 'templates/header' ); ?>
 
 <table class="tcollapse100" width="564" border="0" align="center">
   <tbody>
@@ -35,6 +35,6 @@
   </tbody>
 </table>
 
-<?php get_template_part( 'includes/email-templates/signature' ); ?>
+<?php get_template_part( 'templates/signature' ); ?>
 
-<?php get_template_part( 'includes/email-templates/footer' ); ?>
+<?php get_template_part( 'templates/footer' ); ?>
