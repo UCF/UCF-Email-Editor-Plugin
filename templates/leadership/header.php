@@ -12,7 +12,7 @@
     <?php wp_strip_all_tags( the_title() ); ?>
   </title>
 
-  <?php get_template_part( 'includes/email-templates/css' ); ?>
+  <?php get_template_part( 'templates/css' ); ?>
 </head>
 
 <body>
