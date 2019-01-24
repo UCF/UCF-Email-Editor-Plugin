@@ -7,7 +7,8 @@
  */
 add_filter( 'the_content', 'convert_content_to_email_markup' );
  function convert_content_to_email_markup( $content ) {
-	if ( ! is_page_template( 'email-template-default.php' ) ) {
+
+	if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
 		return $content;
 	}
 
