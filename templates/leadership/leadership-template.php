@@ -35,9 +35,6 @@
   </tbody>
 </table>
 
-<?php
-// TODO: Make this configurable
-include_once( 'signature.php' );
-?>
+<?php include_once( get_post_meta( get_the_ID(), 'ucf_email_editor_signature', true ) . '-signature.php' ); ?>
 
 <?php include_once( 'footer.php' ); ?>
