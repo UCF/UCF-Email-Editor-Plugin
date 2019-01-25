@@ -1,25 +1,29 @@
-function checkImagesOnLoad() {
-  let $imgInput = $('.img-input');
+(function($) {
 
-  $imgInput
-    .each((e, input) => {
-      checkImage($(input));
-    })
-    .on('keyup', (e) => {
-      checkImage($(e.target));
-    });
-}
+  function checkImagesOnLoad() {
+    let $imgInput = $('.img-input');
 
-function checkImage(that) {
-  let url = that.val(),
-      $image = that.prev();
+    $imgInput
+      .each((e, input) => {
+        checkImage($(input));
+      })
+      .on('keyup', (e) => {
+        checkImage($(e.target));
+      });
+  }
 
-  $.get(url)
-    .done(() => {
-      $image.attr('src', url);
-    }).fail(() => {
-      $image.attr('src', emailEditorImageDir + '/brokenImage.png');
-    });
-}
+  function checkImage(that) {
+    let url = that.val(),
+        $image = that.prev();
 
-$(checkImagesOnLoad);
+    $.get(url)
+      .done(() => {
+        $image.attr('src', url);
+      }).fail(() => {
+        $image.attr('src', emailEditorImageDir + '/brokenImage.png');
+      });
+  }
+
+  $(checkImagesOnLoad);
+
+})( jQuery );

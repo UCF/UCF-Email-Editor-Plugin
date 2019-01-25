@@ -57,7 +57,7 @@ if ( ! function_exists( 'ucf_email_editor_plugins_loaded' ) ) {
 		// Delete metabox values
 		add_action( 'delete_metadata', array( 'UCF_Email_Editor_Common', 'delete_post_metadata' ) );
 		// Add admin javascript
-		add_action( 'admin_enqueue_scripts', array( 'UCF_Email_Editor_Metabox', 'enqueue_admin_js' ), 99, 1 );
+		add_action( 'admin_enqueue_scripts', array( 'UCF_Email_Editor_Metabox', 'enqueue_admin_js' ) );
 	}
 	add_action( 'plugins_loaded', 'ucf_email_editor_plugins_loaded', 10, 0 );
 }
