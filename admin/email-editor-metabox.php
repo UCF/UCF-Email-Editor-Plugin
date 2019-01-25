@@ -7,6 +7,25 @@ if ( ! class_exists( 'UCF_Email_Editor_Metabox' ) ) {
 
 
 		/**
+		 * Enqeues admin js
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 * @param $hook string | The current admin hook
+		 **/
+		public static function enqueue_admin_js( $hook ) {
+			if ( 'settings_page_ucf_email_editor' === $hook ) {
+				wp_enqueue_script(
+					'ucf-email-editor-js',
+					UCF_EMAIL_EDITOR__JS_URL . '/ucf-email-editor-admin.js',
+					array( 'jquery' ),
+					null,
+					true
+				);
+			}
+		}
+
+
+		/**
 		 * Adds the Custom Email Editor metabox
 		 * @author RJ Bruneel
 		 * @since 1.0.0
@@ -38,8 +57,13 @@ if ( ! class_exists( 'UCF_Email_Editor_Metabox' ) ) {
 					<tr>
 						<th><strong>Select an Email Signature</strong></th>
 						<td>
-						<input type="radio" name="ucf_email_editor_signature" value="president" <?php checked( $value, 'president' ); ?> >President<br>
-						<input type="radio" name="ucf_email_editor_signature" value="provost" <?php checked( $value, 'provost' ); ?> >Provost<br>
+						<label for="president">
+							<input type="radio" name="ucf_email_editor_signature" id="president" value="president" <?php checked( $value, 'president' ); ?> >President
+						</label>
+						&nbsp;
+						<label for="provost">
+							<input type="radio" name="ucf_email_editor_signature" id="provost" value="provost" <?php checked( $value, 'provost' ); ?> >Provost<br>
+						</label>
 						</td>
 					</tr>
 				</tbody>

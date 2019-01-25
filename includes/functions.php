@@ -6,13 +6,13 @@
  * @author RJ Bruneel
  */
 add_filter( 'the_content', 'convert_content_to_email_markup' );
- function convert_content_to_email_markup( $content ) {
 
+function convert_content_to_email_markup( $content ) {
 	if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
 		return $content;
 	}
 
- 	ob_start();
+	ob_start();
 	?>
 		<table class="paragraphtable" style="width: 100%;">
 			<tbody>
@@ -21,7 +21,7 @@ add_filter( 'the_content', 'convert_content_to_email_markup' );
 	<?php
 	$table_open = ob_get_clean();
 
- 	ob_start();
+	ob_start();
 	?>
 					</td>
 				</tr>
@@ -30,9 +30,9 @@ add_filter( 'the_content', 'convert_content_to_email_markup' );
 	<?php
 	$table_close = ob_get_clean();
 
- 	$content = preg_replace('/<p[^>]*>/', $table_open, $content);
+	$content = preg_replace('/<p[^>]*>/', $table_open, $content);
 	$content = preg_replace('/<\/p>/', $table_close, $content);
 
- 	return $content;
+	return $content;
 }
 ?>

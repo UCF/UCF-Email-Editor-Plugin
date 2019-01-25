@@ -15,6 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'UCF_EMAIL_EDITOR__PLUGIN_URL', plugins_url( basename( dirname( __FILE__ ) ) ) );
 define( 'UCF_EMAIL_EDITOR__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCF_EMAIL_EDITOR__PLUGIN_FILE', __FILE__ );
+define( 'UCF_EMAIL_EDITOR__STATIC_URL', plugins_url( 'static', __FILE__ ) );
+define( 'UCF_EMAIL_EDITOR__JS_URL', UCF_EMAIL_EDITOR__STATIC_URL . '/js' );
+define( 'UCF_EMAIL_EDITOR__IMG_URL', UCF_EMAIL_EDITOR__STATIC_URL . '/img' );
 
 include_once 'includes/functions.php';
 include_once 'includes/ucf-email-editor-config.php';
@@ -53,6 +56,8 @@ if ( ! function_exists( 'ucf_email_editor_plugins_loaded' ) ) {
 		add_action( 'save_post', array( 'UCF_Email_Editor_Metabox', 'save_metabox' ), 10, 1 );
 		// Delete metabox values
 		add_action( 'delete_metadata', array( 'UCF_Email_Editor_Common', 'delete_post_metadata' ) );
+		// Add admin javascript
+		add_action( 'admin_enqueue_scripts', array( 'UCF_Email_Editor_Metabox', 'enqueue_admin_js' ), 99, 1 );
 	}
 	add_action( 'plugins_loaded', 'ucf_email_editor_plugins_loaded', 10, 0 );
 }
