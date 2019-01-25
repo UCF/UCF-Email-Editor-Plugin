@@ -14,7 +14,7 @@
                   <td class="montserratbold" style="width: 100%; font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; padding-bottom: 2px;">Elizabeth A. Dooley</td>
                 </tr>
                 <tr>
-                  <td class="montserrat" style="width: 100%; font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding-bottom: 2px;">Provost and Vice President for Academic Affairs</td>
+                  <td class="montserratlight" style="width: 100%; font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding-bottom: 2px;">Provost and Vice President for Academic Affairs</td>
                 </tr>
               </tbody>
             </table>

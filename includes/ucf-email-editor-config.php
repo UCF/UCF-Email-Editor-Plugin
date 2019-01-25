@@ -179,8 +179,7 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 						ob_start();
 					?>
 					<img src="<?php echo $current_value; ?>">
-					<input type="text" id="<?php echo $option_name; ?>" name="<?php echo $option_name; ?>" class="large-text img-input" value="<?php echo $current_value; ?>"
-						onkeyup="$(this).prev().attr('src', $(this).val());">
+					<input type="text" id="<?php echo $option_name; ?>" name="<?php echo $option_name; ?>" class="large-text img-input" value="<?php echo $current_value; ?>">
 						<p class="description">
 							<?php echo $description; ?>
 						</p>
@@ -233,6 +232,10 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 		public static function options_page_html() {
 			ob_start();
 		?>
+
+		<script>
+			let emailEditorImageDir = "<?php echo UCF_EMAIL_EDITOR__IMG_URL; ?>";
+		</script>
 
 		<div class="wrap">
 			<h1><?php echo get_admin_page_title(); ?></h1>
