@@ -13,7 +13,7 @@
         <tr>
           <td class="ccollapse100" valign="top" style="width: 100px; text-align: left; padding-bottom: 15px;"
             width="100">
-            <img alt="Dale Whittaker" src="https://s3.amazonaws.com/web.ucf.edu/email/postmaster-templates/pro-provost2.jpg"
+            <img alt="Dale Whittaker" src="<?php echo UCF_Email_Editor_Config::get_option_or_default( 'president_signature_image' ); ?>"
               style="display: inline-block; padding-right: 20px;">
           </td>
           <td class="ccollapse100">
