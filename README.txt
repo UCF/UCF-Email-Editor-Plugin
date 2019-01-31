@@ -14,6 +14,10 @@ WordPress Plugin to add an email editor for creating email html content.
 
 Provides an Email custom post type, email templates for creating email HTML content.
 
+The following templates can be overwritten in the plugin.
+
+* leadership-template.php
+
 
 == Documentation ==
 

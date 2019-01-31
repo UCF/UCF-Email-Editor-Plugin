@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Email Template
+ * Template Name: Leadership Email Template
  * Template Post Type: page
  * Description: Default template used to create an email.
  */
@@ -10,7 +10,7 @@
   the_post();
 ?>
 
-<?php get_template_part( 'templates/header' ); ?>
+<?php include_once( 'header.php' ); ?>
 
 <table class="tcollapse100" width="564" border="0" align="center">
   <tbody>
@@ -35,6 +35,6 @@
   </tbody>
 </table>
 
-<?php get_template_part( 'templates/signature' ); ?>
+<?php include_once( get_post_meta( get_the_ID(), 'ucf_email_editor_signature', true ) . '-signature.php' ); ?>
 
-<?php get_template_part( 'templates/footer' ); ?>
+<?php include_once( 'footer.php' ); ?>
