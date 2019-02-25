@@ -5,7 +5,7 @@
  * @since 1.0.0
  * @author RJ Bruneel
  */
-add_filter( 'the_content', 'convert_content_to_email_markup' );
+add_filter( 'the_content', 'convert_content_to_email_markup', 99 );
 
 function convert_content_to_email_markup( $content ) {
 	if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
@@ -32,6 +32,7 @@ function convert_content_to_email_markup( $content ) {
 
 	$content = preg_replace('/<p[^>]*>/', $table_open, $content);
 	$content = preg_replace('/<\/p>/', $table_close, $content);
+	$content = htmlspecialchars_decode( htmlentities( $content ) );
 
 	return $content;
 }
