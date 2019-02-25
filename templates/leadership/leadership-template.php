@@ -35,6 +35,4 @@
   </tbody>
 </table>
 
-<?php include_once( get_post_meta( get_the_ID(), 'ucf_email_editor_signature', true ) . '-signature.php' ); ?>
-
 <?php include_once( 'footer.php' ); ?>
