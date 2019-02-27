@@ -31,6 +31,7 @@ function convert_content_to_email_markup( $content ) {
 	$table_close = ob_get_clean();
 
 	$ul = '<ul style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
+	$ol = '<ol style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
 	$li = '<li style="margin-bottom:5px;">';
 
 	$content = preg_replace('/<p[^>]*>/', $table_open, $content);
@@ -38,6 +39,9 @@ function convert_content_to_email_markup( $content ) {
 
 	$content = preg_replace('/<ul[^>]*>/', $table_open . $ul, $content);
 	$content = preg_replace('/<\/ul>/', '</ul>' . $table_close, $content);
+
+	$content = preg_replace('/<ol[^>]*>/', $table_open . $ol, $content);
+	$content = preg_replace('/<\/ol>/', '</ol>' . $table_close, $content);
 
 	$content = preg_replace('/<li[^>]*>/', $li, $content);
 
