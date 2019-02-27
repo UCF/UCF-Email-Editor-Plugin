@@ -52,22 +52,4 @@ function convert_content_to_email_markup( $content ) {
 }
 
 add_filter( 'the_content', 'convert_content_to_email_markup', 99 );
-
-/**
- * Disable the WYSIWYG editor for UCF Section Post Type
- *
- * @since 1.0.0
- * @author RJ Bruneel
- */
-function gmucf_disable_section_wysiwyg( $wp_rich_edit ) {
-	$screen = get_current_screen();
-
-	if ( isset( $screen->post_type ) && $screen->post_type === 'ucf_section' ) {
-		$wp_rich_edit = false;
-	}
-
-	return $wp_rich_edit;
-}
-
-add_filter( 'user_can_richedit', 'gmucf_disable_section_wysiwyg', 50 );
 ?>
