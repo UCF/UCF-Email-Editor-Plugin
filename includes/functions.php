@@ -5,8 +5,6 @@
  * @since 1.0.0
  * @author RJ Bruneel
  */
-add_filter( 'the_content', 'convert_content_to_email_markup', 99 );
-
 function convert_content_to_email_markup( $content ) {
 	if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
 		return $content;
@@ -45,8 +43,31 @@ function convert_content_to_email_markup( $content ) {
 
 	$content = preg_replace('/<li[^>]*>/', $li, $content);
 
+	$content = preg_replace('/<section[^>]*>/', '', $content);
+	$content = preg_replace('/<\/section>/', '', $content);
+
 	$content = htmlspecialchars_decode( htmlentities( $content ) );
 
 	return $content;
 }
+
+add_filter( 'the_content', 'convert_content_to_email_markup', 99 );
+
+/**
+ * Disable the WYSIWYG editor for UCF Section Post Type
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function gmucf_disable_section_wysiwyg( $wp_rich_edit ) {
+	$screen = get_current_screen();
+
+	if ( isset( $screen->post_type ) && $screen->post_type === 'ucf_section' ) {
+		$wp_rich_edit = false;
+	}
+
+	return $wp_rich_edit;
+}
+
+add_filter( 'user_can_richedit', 'gmucf_disable_section_wysiwyg', 50 );
 ?>
