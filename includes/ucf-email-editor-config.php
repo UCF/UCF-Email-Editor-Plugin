@@ -8,8 +8,6 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 			$option_prefix = 'ucf_email_editor_',
 			$option_defaults = array(
 				'header_image'              => 'https://s3.amazonaws.com/web.ucf.edu/email/postmaster-templates/pro-banner.png',
-				'president_signature_image' => 'https://s3.amazonaws.com/web.ucf.edu/email/postmaster-templates/pro-provost2.jpg',
-				'provost_signature_image'   => 'https://s3.amazonaws.com/web.ucf.edu/email/postmaster-templates/Dr-Elizabeth-Dooley-UCF-Provost-signature.jpg'
 			);
 
 
@@ -22,8 +20,6 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 		public static function add_options() {
 			$defaults = self::$option_defaults; // don't use self::get_option_defaults() here (default options haven't been set yet)
 			add_option( self::$option_prefix . 'header_image', $defaults['header_image'] );
-			add_option( self::$option_prefix . 'president_signature_image', $defaults['president_signature_image'] );
-			add_option( self::$option_prefix . 'provost_signature_image', $defaults['provost_signature_image'] );
 		}
 
 
@@ -35,8 +31,6 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 		 **/
 		public static function delete_options() {
 			delete_option( self::$option_prefix . 'header_image' );
-			delete_option( self::$option_prefix . 'president_signature_image' );
-			delete_option( self::$option_prefix . 'provost_signature_image' );
 		}
 
 
@@ -88,8 +82,6 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 		public static function settings_init() {
 			// Register settings
 			register_setting( 'ucf_email_editor', self::$option_prefix . 'header_image' );
-			register_setting( 'ucf_email_editor', self::$option_prefix . 'president_signature_image' );
-			register_setting( 'ucf_email_editor', self::$option_prefix . 'provost_signature_image' );
 
 			// Register setting sections
 			add_settings_section(
@@ -109,32 +101,6 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 				array(  // extra arguments to pass to the callback function
 					'label_for'   => self::$option_prefix . 'header_image',
 					'description' => 'URL of the image to be displayed in the header.',
-					'type'        => 'image-url'
-				)
-			);
-
-			add_settings_field(
-				self::$option_prefix . 'president_signature_image',
-				'President Signature Image',  // formatted field title
-				array( 'UCF_Email_Editor_Config', 'display_settings_field' ), // display callback
-				'ucf_email_editor',  // settings page slug
-				'ucf_email_editor_section_general',  // option section slug
-				array(  // extra arguments to pass to the callback function
-					'label_for'   => self::$option_prefix . 'president_signature_image',
-					'description' => 'URL of the image to be displayed in the president\'s email signature.',
-					'type'        => 'image-url'
-				)
-			);
-
-			add_settings_field(
-				self::$option_prefix . 'provost_signature_image',
-				'Provost Signature Image',  // formatted field title
-				array( 'UCF_Email_Editor_Config', 'display_settings_field' ), // display callback
-				'ucf_email_editor',  // settings page slug
-				'ucf_email_editor_section_general',  // option section slug
-				array(  // extra arguments to pass to the callback function
-					'label_for'   => self::$option_prefix . 'provost_signature_image',
-					'description' => 'URL of the image to be displayed in the provost\'s email signature.',
 					'type'        => 'image-url'
 				)
 			);
