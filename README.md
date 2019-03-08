@@ -19,6 +19,9 @@ Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email
 
 ## Changelog ##
 
+### 1.1.1 ###
+* Added filter to convert title to email safe html
+
 ### 1.1.0 ###
 * Added logic to encode special characters
 * Removed signatures
