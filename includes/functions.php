@@ -52,4 +52,21 @@ function convert_content_to_email_markup( $content ) {
 }
 
 add_filter( 'the_content', 'convert_content_to_email_markup', 99 );
+
+
+/**
+* Filter to convert email header/title to email friendly markup
+*
+* @since 1.0.0
+* @author RJ Bruneel
+*/
+function convert_title_to_email_markup( $title ) {
+   if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
+	   return $title;
+   }
+
+   return htmlspecialchars_decode( htmlentities( $title ) );
+}
+
+add_filter( 'the_title', 'convert_title_to_email_markup', 99 );
 ?>
