@@ -59,9 +59,4 @@ n/a
 6. Configure plugin settings from the WordPress admin under "UCF Email Editor".
 
 = Other Notes =
-* This plugin's README.md file is automatically generated. Please only make modifications to the README.txt file, and make sure the `gulp readme` command has been run before committing README changes.  See the [contributing guidelines](https://github.com/UCF/UCF-Email-Editor-Plugin/blob/master/CONTRIBUTING.md) for more information.
-
-
-== Contributing ==
-
-Want to submit a bug report or feature request?  Check out our [contributing guidelines](https://github.com/UCF/UCF-Email-Editor-Plugin/blob/master/CONTRIBUTING.md) for more information.  We'd love to hear from you!
+* This plugin's README.md file is automatically generated. Please only make modifications to the README.txt file, and make sure the `gulp readme` command has been run before committing README changes.
