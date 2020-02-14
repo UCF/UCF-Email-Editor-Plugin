@@ -2,7 +2,7 @@
 Contributors: ucfwebcom
 Requires at least: 4.9.7
 Tested up to: 4.9.7
-Stable tag: 0.0.0
+Stable tag: 1.1.2
 Requires PHP: 5.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
@@ -25,6 +25,10 @@ Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email
 
 
 == Changelog ==
+
+= 1.1.2 =
+Documentation:
+* Removed contributing doc and updated readme
 
 = 1.1.1 =
 * Added filter to convert title to email safe html
