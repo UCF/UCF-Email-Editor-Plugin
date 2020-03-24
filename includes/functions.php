@@ -1,6 +1,116 @@
 <?php
+
 /**
- * Filter to convert content paragraphs into email friendly tables
+ * Returns table open email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function get_table_open_markup() {
+	ob_start();
+	?>
+		<table class="paragraphtable" style="width: 100%;">
+			<tbody>
+				<tr>
+					<td class="montserratlight" style="width: 100%; font-family: Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">
+	<?php
+	return ob_get_clean();
+}
+
+
+/**
+ * Returns table close email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function get_table_close_markup() {
+	ob_start();
+	?>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Returns h2 open email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function get_h2_open_markup() {
+	ob_start();
+	?>
+		<table class="paragraphtable" style="width: 100%;">
+			<tbody>
+				<tr>
+					<td class="montserratbold" style="width: 100%; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding: 0px 0px 16px 0px; margin: 0;">
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Convert p tags to email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function convert_p_tags( $content ) {
+	$content = preg_replace('/<p[^>]*>/', get_table_open_markup(), $content);
+	$content = preg_replace('/<\/p>/', get_table_close_markup(), $content);
+
+	return $content;
+}
+
+/**
+ * Convert h2 tags to email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function convert_h2_tags( $content ) {
+	$content = preg_replace('/<h2[^>]*>/', get_h2_open_markup(), $content);
+	$content = preg_replace('/<\/h2>/', get_table_close_markup(), $content);
+
+	return $content;
+}
+
+/**
+ * Convert ul or ol tags to email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function convert_list_tags( $content, $type) {
+
+	$ul = '<' . $type .  ' style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
+
+	$content = preg_replace('/<' . $type .  '[^>]*>/', get_table_open_markup() . $ul, $content);
+	$content = preg_replace('/<\/' . $type .  '>/', '</' . $type .  '>' . get_table_close_markup(), $content);
+
+	return $content;
+}
+
+/**
+ * Convert li tags to email markup
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ */
+function convert_li_tags( $content ) {
+
+	$li = '<li style="margin-bottom:5px;">';
+
+	$content = preg_replace('/<li[^>]*>/', $li, $content);
+
+	return $content;
+}
+
+/**
+ * Filter to convert content into email friendly markup
  *
  * @since 1.0.0
  * @author RJ Bruneel
@@ -10,38 +120,11 @@ function convert_content_to_email_markup( $content ) {
 		return $content;
 	}
 
-	ob_start();
-	?>
-		<table class="paragraphtable" style="width: 100%;">
-			<tbody>
-				<tr>
-					<td class="montserratlight" style="width: 100%; font-family: Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">
-	<?php
-	$table_open = ob_get_clean();
-
-	ob_start();
-	?>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	<?php
-	$table_close = ob_get_clean();
-
-	$ul = '<ul style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
-	$ol = '<ol style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
-	$li = '<li style="margin-bottom:5px;">';
-
-	$content = preg_replace('/<p[^>]*>/', $table_open, $content);
-	$content = preg_replace('/<\/p>/', $table_close, $content);
-
-	$content = preg_replace('/<ul[^>]*>/', $table_open . $ul, $content);
-	$content = preg_replace('/<\/ul>/', '</ul>' . $table_close, $content);
-
-	$content = preg_replace('/<ol[^>]*>/', $table_open . $ol, $content);
-	$content = preg_replace('/<\/ol>/', '</ol>' . $table_close, $content);
-
-	$content = preg_replace('/<li[^>]*>/', $li, $content);
+	$content = convert_p_tags( $content );
+	$content = convert_h2_tags( $content );
+	$content = convert_list_tags( $content, 'ul' );
+	$content = convert_list_tags( $content, 'ol' );
+	$content = convert_li_tags( $content );
 
 	$content = preg_replace('/<section[^>]*>/', '', $content);
 	$content = preg_replace('/<\/section>/', '', $content);
