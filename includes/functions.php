@@ -5,6 +5,7 @@
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @return string table markup
  */
 function get_table_open_markup() {
 	ob_start();
@@ -23,6 +24,7 @@ function get_table_open_markup() {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @return string table markup
  */
 function get_table_close_markup() {
 	ob_start();
@@ -40,6 +42,7 @@ function get_table_close_markup() {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @return string table markup
  */
 function get_h2_open_markup() {
 	ob_start();
@@ -57,6 +60,8 @@ function get_h2_open_markup() {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @param string $content
+ * @return string content
  */
 function convert_p_tags( $content ) {
 	$content = preg_replace('/<p[^>]*>/', get_table_open_markup(), $content);
@@ -70,6 +75,8 @@ function convert_p_tags( $content ) {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @param string $content
+ * @return string content
  */
 function convert_h2_tags( $content ) {
 	$content = preg_replace('/<h2[^>]*>/', get_h2_open_markup(), $content);
@@ -83,6 +90,9 @@ function convert_h2_tags( $content ) {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @param string $content
+ * @param string $type
+ * @return string content
  */
 function convert_list_tags( $content, $type) {
 
@@ -99,6 +109,8 @@ function convert_list_tags( $content, $type) {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+ * @param string $content
+ * @return string content
  */
 function convert_li_tags( $content ) {
 
@@ -114,6 +126,8 @@ function convert_li_tags( $content ) {
  *
  * @since 1.0.0
  * @author RJ Bruneel
+* @param string $content
+* @return string content
  */
 function convert_content_to_email_markup( $content ) {
 	if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
@@ -142,6 +156,8 @@ add_filter( 'the_content', 'convert_content_to_email_markup', 99 );
 *
 * @since 1.0.0
 * @author RJ Bruneel
+* @param string $title
+* @return string email title
 */
 function convert_title_to_email_markup( $title ) {
    if ( get_query_var( 'post_type' ) !== 'ucf-email' ) {
@@ -152,4 +168,26 @@ function convert_title_to_email_markup( $title ) {
 }
 
 add_filter( 'the_title', 'convert_title_to_email_markup', 99 );
+
+
+/**
+* Get the selected email signature
+*
+* @since 1.0.0
+* @author RJ Bruneel
+* @return string signature markup
+*/
+function get_email_signature() {
+
+	$signature = get_field( 'email_signature' );
+
+	if( $signature ) {
+	  $signature = $signature->post_content;
+	} else {
+	  $signature = '';
+	}
+
+	return $signature;
+}
+
 ?>
