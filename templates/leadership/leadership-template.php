@@ -26,6 +26,7 @@
       <tr>
         <td class="ccollapse100" style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.5;">
           <?php the_content(); ?>
+          <?php echo get_email_signature(); ?>
         </td>
       </tr>
       </tbody>
