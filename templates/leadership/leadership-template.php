@@ -15,7 +15,7 @@
 <table class="tcollapse100" width="564" border="0" align="center">
   <tbody>
   <tr>
-    <td class="montserratbold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 35px; font-weight: bold; padding-top: 20px; padding-bottom: 30px; line-height: 1.1; color: #000; text-align: left;" align="left">
+    <td style="padding-left: 0; padding-right: 0; font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; font-size: 35px; font-weight: bold; padding-top: 20px; padding-bottom: 30px; line-height: 1.1; color: #000; text-align: left;" align="left">
       <?php the_title(); ?>
     </td>
   </tr>
@@ -24,8 +24,9 @@
     <table class="tcollapse100" align="center" style="width: 100%;">
       <tbody>
       <tr>
-        <td class="ccollapse100" style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.5;">
+        <td class="ccollapse100" style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.5;">
           <?php the_content(); ?>
+          <?php echo get_email_signature(); ?>
         </td>
       </tr>
       </tbody>
@@ -34,7 +35,5 @@
   </tr>
   </tbody>
 </table>
-
-<?php include_once( get_post_meta( get_the_ID(), 'ucf_email_editor_signature', true ) . '-signature.php' ); ?>
 
 <?php include_once( 'footer.php' ); ?>
