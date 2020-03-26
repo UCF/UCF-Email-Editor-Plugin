@@ -19,6 +19,13 @@ Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email
 
 ## Changelog ##
 
+### 1.1.3 ###
+Enhancements:
+* Refactored email markup filtering and added logic to convert `h2` tags to cross-client compatible markup.
+* Added feature to select email signatures from an ACF dropdown field.
+* Updated how custom webfonts are included in email markup to use a single, combined font definition, instead of definitions per each font weight.
+* Removed unused styles/cruft.
+
 ### 1.1.2 ###
 Documentation:
 * Removed contributing doc and updated readme
