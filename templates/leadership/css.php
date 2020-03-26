@@ -3,24 +3,24 @@
     font-family: "UCF-Sans-Serif-Alt";
     font-style: normal;
     font-weight: 400;
-    src: url('http://cdn.ucf.edu/athena-framework/latest/fonts/ucf-sans-serif-alt/ucfsansserifalt-medium-webfont.woff2') format("woff2"),
-	  url('http://cdn.ucf.edu/athena-framework/latest/fonts/ucf-sans-serif-alt/ucfsansserifalt-medium-webfont.woff') format("woff");
+    src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/ucfsansserifalt-medium-webfont.woff2') format("woff2"),
+	  url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/ucfsansserifalt-medium-webfont.woff') format("woff");
 	mso-font-alt: 'Arial';
   }
   @font-face {
     font-family: "UCF-Sans-Serif-Alt";
     font-style: normal;
     font-weight: 500;
-    src: url('http://cdn.ucf.edu/athena-framework/latest/fonts/ucf-sans-serif-alt/ucfsansserifalt-semibold-webfont.woff2') format("woff2"),
-	  url('http://cdn.ucf.edu/athena-framework/latest/fonts/ucf-sans-serif-alt/ucfsansserifalt-semibold-webfont.woff') format("woff");
+    src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/ucfsansserifalt-semibold-webfont.woff2') format("woff2"),
+	  url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/ucfsansserifalt-semibold-webfont.woff') format("woff");
 	mso-font-alt: 'Arial';
   }
   @font-face {
     font-family: "UCF-Sans-Serif-Alt";
     font-style: normal;
     font-weight: 700;
-    src: url('http://cdn.ucf.edu/athena-framework/latest/fonts/ucf-sans-serif-alt/ucfsansserifalt-bold-webfont.woff2') format("woff2"),
-	  url('http://cdn.ucf.edu/athena-framework/latest/fonts/ucf-sans-serif-alt/ucfsansserifalt-bold-webfont.woff') format("woff");
+    src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/ucfsansserifalt-bold-webfont.woff2') format("woff2"),
+	  url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/ucfsansserifalt-bold-webfont.woff') format("woff");
 	mso-font-alt: 'Arial';
   }
 
