@@ -13,7 +13,7 @@ function get_table_open_markup() {
 		<table class="paragraphtable" style="width: 100%;">
 			<tbody>
 				<tr>
-					<td class="montserratlight" style="width: 100%; font-family: Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">
+					<td style="width: 100%; font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">
 	<?php
 	return ob_get_clean();
 }
@@ -50,7 +50,7 @@ function get_h2_open_markup() {
 		<table class="paragraphtable" style="width: 100%;">
 			<tbody>
 				<tr>
-					<td class="montserratbold" style="width: 100%; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding: 0px 0px 16px 0px; margin: 0;">
+					<td style="width: 100%; font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding: 0px 0px 16px 0px; margin: 0;">
 	<?php
 	return ob_get_clean();
 }
