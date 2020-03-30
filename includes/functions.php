@@ -171,6 +171,27 @@ add_filter( 'the_title', 'convert_title_to_email_markup', 99 );
 
 
 /**
+* Get the selected email header
+*
+* @since 1.0.0
+* @author RJ Bruneel
+* @return string header markup
+*/
+function get_email_header() {
+
+	$header = get_field( 'email_header' );
+
+	if( $header ) {
+	  $header = $header->post_content;
+	} else {
+	  $header = '';
+	}
+
+	return $header;
+}
+
+
+/**
 * Get the selected email signature
 *
 * @since 1.0.0
@@ -188,6 +209,27 @@ function get_email_signature() {
 	}
 
 	return $signature;
+}
+
+
+/**
+* Get the selected email footer
+*
+* @since 1.0.0
+* @author RJ Bruneel
+* @return string footer markup
+*/
+function get_email_footer() {
+
+	$footer = get_field( 'email_footer' );
+
+	if( $footer ) {
+	  $footer = $footer->post_content;
+	} else {
+	  $footer = '';
+	}
+
+	return $footer;
 }
 
 ?>
