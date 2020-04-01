@@ -6,8 +6,6 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="initial-scale=1.0">
 
-  <!-- So that mobile webkit will display zoomed in -->
-  <link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/web.ucf.edu/email/common-assets/stylesheet.css">
   <title>
     <?php wp_strip_all_tags( the_title() ); ?>
   </title>
