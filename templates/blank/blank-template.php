@@ -1,8 +1,8 @@
 <?php
 /*
- * Template Name: Leadership Email Template
- * Template Post Type: page
- * Description: Default template used to create an email.
+ * Template Name: Blank Email Template
+ * Template Post Type: ucf_email
+ * Description: Blank template used to create an email.
  */
 ?>
 

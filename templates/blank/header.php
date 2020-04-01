@@ -5,7 +5,10 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="initial-scale=1.0">
-  <title><?php wp_strip_all_tags( the_title() ); ?></title>
+
+  <title>
+    <?php wp_strip_all_tags( the_title() ); ?>
+  </title>
 
   <?php include_once( 'css.php' ); ?>
 </head>
@@ -16,8 +19,7 @@
     <tbody>
       <tr>
         <td style="padding: 0;">
-          <img src="https://s3.amazonaws.com/web.ucf.edu/email/postmaster-templates/pro-banner.png" alt="UCF banner"
-            class="responsiveimg">
+          <?php echo get_email_header(); ?>
         </td>
       </tr>
       <tr>
