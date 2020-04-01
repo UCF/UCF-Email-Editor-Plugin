@@ -69,7 +69,7 @@
     color: #006699;
   }
 
-  @media all and (min-width: 640px) {
+  @media all and (min-width: 641px) {
       td.text-right-desktop,
       th.text-right-desktop {
           text-align: right !important;
