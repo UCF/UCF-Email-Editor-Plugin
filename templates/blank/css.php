@@ -69,6 +69,17 @@
     color: #006699;
   }
 
+  @media all and (min-width: 641px) {
+      td.text-right-desktop,
+      th.text-right-desktop {
+          text-align: right !important;
+      }
+
+      td.text-left-desktop,
+      th.text-left-desktop {
+          text-align: left !important;
+      }
+  }
 
   @media all and (max-width: 640px) {
 
