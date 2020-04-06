@@ -69,8 +69,35 @@
     color: #006699;
   }
 
+  @media all and (min-width: 641px) {
+      td.text-right-desktop,
+      th.text-right-desktop {
+          text-align: right !important;
+      }
+
+      td.text-left-desktop,
+      th.text-left-desktop {
+          text-align: left !important;
+      }
+  }
 
   @media all and (max-width: 640px) {
+
+  /* The outermost wrapper table */
+	table[class="wrapperOuter"] {
+		margin: 10px 0 0 !important;
+		width: 100% !important;
+	}
+
+	/* The firstmost inner tables, which should be padded at mobile sizes */
+	table[class="wrapperInner"] {
+		border-left: 0px solid transparent !important;
+		border-right: 0px solid transparent !important;
+		margin: 0 !important;
+		padding-left: 15px;
+		padding-right: 15px;
+		width: 100% !important;
+	}
 
     /* The outermost wrapper table */
     table.t640 {

@@ -20,7 +20,51 @@
                     "ucf_section"
                 ],
                 "taxonomy": "",
-                "allow_null": 0,
+                "allow_null": 1,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
+            },
+            {
+                "key": "field_5e8247fa55751",
+                "label": "Email Header",
+                "name": "email_header",
+                "type": "post_object",
+                "instructions": "Select the header to use for this email.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "ucf_section"
+                ],
+                "taxonomy": "",
+                "allow_null": 1,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
+            },
+            {
+                "key": "field_5e824a86232bf",
+                "label": "Email Footer",
+                "name": "email_footer",
+                "type": "post_object",
+                "instructions": "Select the footer to use for this email.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "ucf_section"
+                ],
+                "taxonomy": "",
+                "allow_null": 1,
                 "multiple": 0,
                 "return_format": "object",
                 "ui": 1

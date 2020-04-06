@@ -9,7 +9,7 @@ Provides an Email custom post type, email templates for creating email HTML cont
 
 The following templates can be overwritten in the plugin.
 
-* leadership-template.php
+* blank-template.php
 
 
 ## Documentation ##
@@ -18,6 +18,9 @@ Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email
 
 
 ## Changelog ##
+
+### 1.1.4 ###
+* Updated template to use a blank template instead of the leadership template.
 
 ### 1.1.3 ###
 Enhancements:
