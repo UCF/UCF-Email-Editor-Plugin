@@ -83,6 +83,22 @@
 
   @media all and (max-width: 640px) {
 
+  /* The outermost wrapper table */
+	table[class="wrapperOuter"] {
+		margin: 10px 0 0 !important;
+		width: 100% !important;
+	}
+
+	/* The firstmost inner tables, which should be padded at mobile sizes */
+	table[class="wrapperInner"] {
+		border-left: 0px solid transparent !important;
+		border-right: 0px solid transparent !important;
+		margin: 0 !important;
+		padding-left: 15px;
+		padding-right: 15px;
+		width: 100% !important;
+	}
+
     /* The outermost wrapper table */
     table.t640 {
       width: 100% !important;
