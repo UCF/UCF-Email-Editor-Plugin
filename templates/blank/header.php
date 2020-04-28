@@ -13,8 +13,8 @@
   <?php include_once( 'css.php' ); ?>
 </head>
 
-<body style="background-color: #f1f1f1;">
-<table width="100%" align="center" style="width: 100% !important; table-layout: fixed;">
+<body style="background-color: #ffffff;">
+<table width="100%" align="center" style="width: 100% !important; table-layout: fixed; background-color: #f1f1f1;">
     <tbody>
       <tr>
         <td align="center" style="padding: 0;">
