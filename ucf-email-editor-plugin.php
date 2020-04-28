@@ -2,7 +2,7 @@
 /*
 Plugin Name: UCF Email Editor Plugin
 Description: Provides email custom post type, email editor templates and related meta fields.
-Version: 1.1.3
+Version: 1.1.5
 Author: UCF Web Communications
 License: GPL3
 GitHub Plugin URI: UCF/UCF-Email-Editor-Plugin

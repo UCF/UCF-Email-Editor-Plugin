@@ -2,7 +2,7 @@
 Contributors: ucfwebcom
 Requires at least: 4.9.7
 Tested up to: 5.3
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 Requires PHP: 5.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
@@ -26,7 +26,12 @@ Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email
 
 == Changelog ==
 
+= 1.1.5 =
+Bug Fixes:
+* Fixed issue in "blank" template that could result in sporatic horizontal lines throughout the body of an email.
+
 = 1.1.4 =
+Enhancements:
 * Updated template to use a blank template instead of the leadership template.
 
 = 1.1.3 =
