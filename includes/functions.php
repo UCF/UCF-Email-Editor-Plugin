@@ -192,6 +192,25 @@ function get_email_header() {
 
 
 /**
+ * Get the selected email title
+ *
+ * @since 1.1.6
+ * @author Jo Dickson
+ * @return string email title
+ */
+function get_email_title() {
+	$title = '';
+	$hide_title = get_field( 'email_hide_title' );
+
+	if ( $hide_title !== true ) {
+		$title = get_the_title();
+	}
+
+	return $title;
+}
+
+
+/**
 * Get the selected email signature
 *
 * @since 1.0.0
