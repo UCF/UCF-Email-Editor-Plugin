@@ -14,11 +14,13 @@
 
 <table class="tcollapse100" width="564" border="0" align="center">
   <tbody>
+  <?php if ( $title = get_email_title() ): ?>
   <tr>
     <td style="padding-left: 0; padding-right: 0; font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; font-size: 35px; font-weight: bold; padding-top: 20px; padding-bottom: 30px; line-height: 1.1; color: #000; text-align: left;" align="left">
-      <?php the_title(); ?>
+      <?php echo $title; ?>
     </td>
   </tr>
+  <?php endif; ?>
   <tr>
     <td class="ccollapse100" style="width: 100%;">
     <table class="tcollapse100" align="center" style="width: 100%;">

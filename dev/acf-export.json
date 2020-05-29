@@ -4,11 +4,11 @@
         "title": "Email Field Group",
         "fields": [
             {
-                "key": "field_5e7a6a6383ad0",
-                "label": "Email Signature",
-                "name": "email_signature",
+                "key": "field_5e8247fa55751",
+                "label": "Email Header",
+                "name": "email_header",
                 "type": "post_object",
-                "instructions": "Select the signature to use for this email.",
+                "instructions": "Select the header to use for this email.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -26,11 +26,30 @@
                 "ui": 1
             },
             {
-                "key": "field_5e8247fa55751",
-                "label": "Email Header",
-                "name": "email_header",
+                "key": "field_5ed121a3c7d14",
+                "label": "Hide Email Title",
+                "name": "email_hide_title",
+                "type": "true_false",
+                "instructions": "If checked, the email title will not be displayed at the top of the email template.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Hide title",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5e7a6a6383ad0",
+                "label": "Email Signature",
+                "name": "email_signature",
                 "type": "post_object",
-                "instructions": "Select the header to use for this email.",
+                "instructions": "Select the signature to use for this email.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
