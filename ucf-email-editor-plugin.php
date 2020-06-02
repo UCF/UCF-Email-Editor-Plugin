@@ -22,6 +22,8 @@ define( 'UCF_EMAIL_EDITOR__IMG_URL', UCF_EMAIL_EDITOR__STATIC_URL . '/img' );
 include_once 'includes/functions.php';
 include_once 'includes/ucf-email-editor-config.php';
 include_once 'includes/ucf-email-posttype.php';
+include_once 'includes/email-send-functions.php';
+include_once 'admin/email-admin.php';
 include_once 'templates/templates.php';
 
 if ( ! function_exists( 'ucf_email_editor_plugin_activation' ) ) {
