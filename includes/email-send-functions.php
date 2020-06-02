@@ -34,6 +34,9 @@ function send_instant_preview( $args ) {
 	$headers[] = $sender;
 	$headers[] = 'Content-Type: text/html; charset=UTF-8';
 
+	// DEBUG REMEMBER TO REMOVE!
+	$args['to'] = array( 'james.barnes@ucf.edu' );
+
 	return wp_mail(
 		$args['to'],
 		$args['subject'],
@@ -52,16 +55,16 @@ function send_instant_preview( $args ) {
  */
 function generate_email_markup( $post_id ) {
 	$args = array(
-		'post_id' => $post_id
+		'id' => $post_id
 	);
 
 	$query = new WP_Query( $args );
 
 	ob_start();
 
-	while ( have_posts() ) : the_post();
+	while ( $query->have_posts() ) : $query->the_post();
 
-	include 'templates/blank/blank-template.php';
+	include UCF_EMAIL_EDITOR__PLUGIN_DIR . 'templates/blank/blank-template.php';
 
 	endwhile;
 
@@ -95,4 +98,4 @@ function instant_send_ajax() {
 	wp_die();
 }
 
-add_action( 'wp_ajax_instant_send', 'instant_send_ajax', 10 );
+add_action( 'wp_ajax_instant-send', 'instant_send_ajax', 10 );
