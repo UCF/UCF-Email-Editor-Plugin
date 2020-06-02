@@ -31,18 +31,27 @@ function send_instant_preview( $args ) {
 
 	$sender = "From: $from_friendly <$from_email>";
 
-	$headers[] = $sender;
+	$headers[] = 'MIME-Version: 1.0';
 	$headers[] = 'Content-Type: text/html; charset=UTF-8';
-
-	// DEBUG REMEMBER TO REMOVE!
-	$args['to'] = array( 'james.barnes@ucf.edu' );
+	$headers[] = $sender;
 
 	return wp_mail(
 		$args['to'],
-		$args['subject'],
-		$args['body'],
+		trim( $args['subject'] ),
+		trim( $args['body'] ),
 		$headers
 	);
+}
+
+/**
+ * Helper function for text/html issues
+ * @author Jim Barnes
+ * @since 1.2.0
+ * @param string $content_type
+ * @return string
+ */
+function gmucf_content_type( $content_type ) {
+	return 'text/html';
 }
 
 /**
@@ -54,21 +63,25 @@ function send_instant_preview( $args ) {
  * @return string
  */
 function generate_email_markup( $post_id ) {
+	global $wp_query;
+
+	$wp_the_query = $wp_query;
+
 	$args = array(
-		'id' => $post_id
+		'p'         => $post_id,
+		'post_type' => 'ucf-email'
 	);
 
 	$query = new WP_Query( $args );
 
+	$wp_query = $query;
+
 	ob_start();
 
-	while ( $query->have_posts() ) : $query->the_post();
+	include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'templates/blank/blank-template.php';
 
-	include UCF_EMAIL_EDITOR__PLUGIN_DIR . 'templates/blank/blank-template.php';
-
-	endwhile;
-
-	wp_reset_postdata();
+	// Reset wp_query
+	$wp_query = $wp_the_query;
 
 	return ob_get_clean();
 }
