@@ -29,11 +29,19 @@ function insert_instant_send_js() {
 		};
 
 		var onPostSuccess = function(response) {
-			var $markup = jQuery(
-				'<div class="updated notice notice-success is-dismissible">' +
-					'<p>Preview of email sent.</p>' +
-				'</div>'
-			);
+			if ( response.success === true ) {
+				var $markup = jQuery(
+					'<div class="updated notice notice-success is-dismissible">' +
+						'<p>Preview of email sent.</p>' +
+					'</div>'
+				);
+			} else {
+				var $markup = jQuery(
+					'<div class="notice notice-error is-dismissible">' +
+						'<p>There was a problem sending the preview.</p>' +
+					'</div>'
+				);
+			}
 
 			$markup.insertAfter('.wp-header-end');
 		};

@@ -94,16 +94,31 @@ function generate_email_markup( $post_id ) {
 function instant_send( $post_id ) {
 	$markup = generate_email_markup( $post_id );
 
-	/**
-	 * TODO: Need to create logic that handles
-	 * getting the to, from and subject from
-	 * the ACF fields that are being defined
-	 * in another branch.
-	 */
-
 	$args = array(
 		'body' => $markup
 	);
+
+	// Get recipients
+	$recipients_raw = get_field( 'preview_recipients', $post_id );
+	$recipients     = explode( ',', $recipients_raw );
+
+	if ( is_array( $recipients ) && count( $recipients ) > 0 ) {
+		$args['to'] = $recipients;
+	}
+
+	// Get subject line and from details
+	$subject       = get_field( 'subject_line' );
+	$from_email    = get_field( 'from_email_address' );
+	$from_friendly = get_field( 'from_friendly_name' );
+
+	if ( $subject ) {
+		$args['subject'] = "*** PREVIEW *** $subject *** PREVIEW ***";
+	}
+
+	if ( $from_email && $from_friendly ) {
+		$args['from']          = $from_email;
+		$args['from_friendly'] = $from_friendly;
+	}
 
 	$send = send_instant_preview( $args );
 
