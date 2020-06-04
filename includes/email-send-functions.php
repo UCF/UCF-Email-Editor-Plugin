@@ -87,20 +87,38 @@ function generate_email_markup( $post_id ) {
 }
 
 /**
- * The ajax handlers for the instant send.
+ * Sends an email instantly
  * @author Jim Barnes
- * @since 1.2.0
+ * @since 1.0.0
  */
-function instant_send_ajax() {
-	$post_id = intval( $_POST['post_id'] );
-
+function instant_send( $post_id ) {
 	$markup = generate_email_markup( $post_id );
+
+	/**
+	 * TODO: Need to create logic that handles
+	 * getting the to, from and subject from
+	 * the ACF fields that are being defined
+	 * in another branch.
+	 */
 
 	$args = array(
 		'body' => $markup
 	);
 
 	$send = send_instant_preview( $args );
+
+	return $send;
+}
+
+/**
+ * The ajax handler for the instant send.
+ * @author Jim Barnes
+ * @since 1.2.0
+ */
+function instant_send_ajax() {
+	$post_id = intval( $_POST['post_id'] );
+
+	$send = instant_send( $post_id );
 
 	$retval = array(
 		'success' => $send
