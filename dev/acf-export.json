@@ -19,7 +19,9 @@
                 "post_type": [
                     "ucf_section"
                 ],
-                "taxonomy": "",
+                "taxonomy": [
+                    "post_tag:email-header"
+                ],
                 "allow_null": 1,
                 "multiple": 0,
                 "return_format": "object",
@@ -60,7 +62,9 @@
                 "post_type": [
                     "ucf_section"
                 ],
-                "taxonomy": "",
+                "taxonomy": [
+                    "post_tag:email-signature"
+                ],
                 "allow_null": 1,
                 "multiple": 0,
                 "return_format": "object",
@@ -82,7 +86,9 @@
                 "post_type": [
                     "ucf_section"
                 ],
-                "taxonomy": "",
+                "taxonomy": [
+                    "post_tag:email-footer"
+                ],
                 "allow_null": 1,
                 "multiple": 0,
                 "return_format": "object",
