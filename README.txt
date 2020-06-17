@@ -19,9 +19,24 @@ The following templates can be overwritten in the plugin.
 * blank-template.php
 
 
-== Documentation ==
+== Installation Requirements ==
 
-Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email-Editor-Plugin/wiki) for detailed information about this plugin, installation instructions, and more.
+This plugin is developed and tested against WordPress 4.9.7+ and PHP 5.4+.
+
+= Required plugins =
+These plugins _must_ be activated for the UCF-Email-Editor-Plugin to function properly.
+
+* [Advanced Custom Fields PRO](https://advancedcustomfields.com/)
+* [UCF Section Plugin](https://github.com/UCF/UCF-Section-Plugin) v1.1.0+
+
+
+== Configuration ==
+
+After installing this plugin and [all necessary dependencies](#installation-requirements), you should perform the following configuration steps:
+
+* [Download this plugin's ACF config file](https://github.com/UCF/UCF-Email-Editor-Plugin/blob/master/dev/acf-export.json), and import field groups using the ACF importer under Custom Fields > Tools.
+* Create three new tags for Sections: "Email Header", "Email Signature", and "Email Footer".  Sections designated as email headers/signatures/footers should be assigned these tags, respectively.
+* Modify plugin settings as necessary under Settings > UCF Email Editor.
 
 
 == Changelog ==
