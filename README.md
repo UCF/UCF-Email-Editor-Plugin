@@ -23,6 +23,15 @@ These plugins _must_ be activated for the UCF-Email-Editor-Plugin to function pr
 * [UCF Section Plugin](https://github.com/UCF/UCF-Section-Plugin) v1.1.0+
 
 
+## Configuration ##
+
+After installing this plugin and [all necessary dependencies](#installation-requirements), you should perform the following configuration steps:
+
+* [Download this plugin's ACF config file](https://github.com/UCF/UCF-Email-Editor-Plugin/blob/master/dev/acf-export.json), and import field groups using the ACF importer under Custom Fields > Tools.
+* Create three new tags for Sections: "Email Header", "Email Signature", and "Email Footer".  Sections designated as email headers/signatures/footers should be assigned these tags, respectively.
+* Modify plugin settings as necessary under Settings > UCF Email Editor.
+
+
 ## Changelog ##
 
 ### 1.1.6 ###
