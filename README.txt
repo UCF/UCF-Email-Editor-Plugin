@@ -19,9 +19,15 @@ The following templates can be overwritten in the plugin.
 * blank-template.php
 
 
-== Documentation ==
+== Installation Requirements ==
 
-Head over to the [UCF Email Editor Plugin wiki](https://github.com/UCF/UCF-Email-Editor-Plugin/wiki) for detailed information about this plugin, installation instructions, and more.
+This plugin is developed and tested against WordPress 4.9.7+ and PHP 5.4+.
+
+= Required plugins =
+These plugins _must_ be activated for the UCF-Email-Editor-Plugin to function properly.
+
+* [Advanced Custom Fields PRO](https://advancedcustomfields.com/)
+* [UCF Section Plugin](https://github.com/UCF/UCF-Section-Plugin) v1.1.0+
 
 
 == Changelog ==
