@@ -114,3 +114,27 @@ function mce_before_init_insert_formats( $settings ) {
 }
 
 add_filter( 'tiny_mce_before_init', 'mce_before_init_insert_formats' );
+
+
+/**
+ * Removes unsupported elements from the plaintext editor's
+ * "quicktags" toolbar
+ *
+ * @since 1.2.0
+ * @author Jo Dickson
+ */
+function email_quicktags_settings( $qt_settings, $editor_id ) {
+	global $post;
+
+	if (
+		is_admin()
+		&& $post instanceof WP_Post
+		&& $post->post_type === 'ucf-email'
+	) {
+		$qt_settings['buttons'] = 'strong,em,link,img,ul,ol,li';
+	}
+
+	return $qt_settings;
+}
+
+add_filter( 'quicktags_settings', 'email_quicktags_settings', 10, 2 );
