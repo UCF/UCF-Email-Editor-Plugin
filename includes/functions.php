@@ -166,6 +166,9 @@ function format_url_utm_params( $url='', $source='', $medium='', $campaign='', $
 	if ( $content ) {
 		$url_params_arr['utm_content'] = $content;
 	}
+	else if ( isset( $url_params_arr['utm_content'] ) ) {
+		unset( $url_params_arr['utm_content'] );
+	}
 	$url_params_str = '?' . http_build_query( $url_params_arr );
 
 	// Put it all back together, and return:
