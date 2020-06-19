@@ -122,7 +122,7 @@
                 "label": "Enable UTM Param Insertion",
                 "name": "email_enable_utms",
                 "type": "true_false",
-                "instructions": "Uncheck this box to disable automatic UTM param insertion on links in this email.",
+                "instructions": "Uncheck this box to disable automatic UTM param insertion on links in this email. Note that, even if this setting is enabled, the email's UTM Source, Medium, and Campaign values must be set below for automatic UTM insertion to take place.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
