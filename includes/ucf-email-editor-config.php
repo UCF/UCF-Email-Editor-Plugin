@@ -8,7 +8,7 @@ if ( !class_exists( 'UCF_Email_Editor_Config' ) ) {
 			$option_prefix = 'ucf_email_editor_',
 			$option_defaults = array(
 				'header_image'      => 'https://s3.amazonaws.com/web.ucf.edu/email/postmaster-templates/pro-banner.png',
-				'utm_replace_regex' => '/^http(s)?\:\/\/([^\?\/]+\.)?ucf.edu(\/)?/i'
+				'utm_replace_regex' => '/^http(s)?\:\/\/([^\?\/]+\.)?ucf\.edu(\/)?/i'
 			);
 
 
