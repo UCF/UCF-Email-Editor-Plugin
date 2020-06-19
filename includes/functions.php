@@ -130,7 +130,7 @@ function convert_li_tags( $content ) {
  *
  * @since 1.1.7
  * @author Jo Dickson
- * @param string $url Arbitrary URL linking to external content
+ * @param string $url Arbitrary URL
  * @param string $source Source UTM param to insert
  * @param string $medium Medium UTM param to insert
  * @param string $campaign Campaign UTM param to insert
