@@ -121,6 +121,152 @@ function convert_li_tags( $content ) {
 	return $content;
 }
 
+
+/**
+ * Returns the provided URL formatted with provided UTM params.
+ *
+ * Respects existing query params in the URL, but replaces
+ * existing UTM params if present.
+ *
+ * @since 1.1.7
+ * @author Jo Dickson
+ * @param string $url Arbitrary URL
+ * @param string $source Source UTM param to insert
+ * @param string $medium Medium UTM param to insert
+ * @param string $campaign Campaign UTM param to insert
+ * @param string $content Content UTM param to insert
+ * @return string formatted URL
+ */
+function format_url_utm_params( $url='', $source='', $medium='', $campaign='', $content='' ) {
+	// Make sure $url is a sane value
+	if ( ! trim( $url ) ) return $url;
+
+	// Require that at least $source, $medium and $campaign
+	// be set to non-empty values:
+	if ( ! trim( $source ) || ! trim( $medium ) || ! trim( $campaign ) ) {
+		return $url;
+	}
+
+	// Segment out parts of the URL we need:
+	$url_base = explode( '?', $url, 2 )[0] ?? $url; // strip query params from url
+	$url_params_str = '';
+	$url_params_arr = array();
+	$url_anchor     = parse_url( $url, PHP_URL_FRAGMENT );
+	if ( $url_anchor ) {
+		$url_anchor = '#' . $url_anchor;
+		$url_base = explode( '#', $url_base, -1 )[0] ?? $url_base; // strip anchor from url
+	}
+
+	// Parse out query params into an associative array,
+	// apply our UTM params, then rebuild into a string:
+	parse_str( parse_url( $url, PHP_URL_QUERY ), $url_params_arr );
+	$url_params_arr['utm_source'] = $source;
+	$url_params_arr['utm_medium'] = $medium;
+	$url_params_arr['utm_campaign'] = $campaign;
+	if ( $content ) {
+		$url_params_arr['utm_content'] = $content;
+	}
+	else if ( isset( $url_params_arr['utm_content'] ) ) {
+		unset( $url_params_arr['utm_content'] );
+	}
+	$url_params_str = '?' . http_build_query( $url_params_arr );
+
+	// Put it all back together, and return:
+	return $url_base . $url_params_str . $url_anchor;
+}
+
+
+/**
+ * Applies UTM params to links within the provided content
+ * using the regex pattern provided via plugin options.
+ *
+ * @since 1.1.7
+ * @author Jo Dickson
+ * @param string $str Arbitrary HTML string
+ * @param string $source Source UTM param to insert
+ * @param string $medium Medium UTM param to insert
+ * @param string $campaign Campaign UTM param to insert
+ * @param string $content Content UTM param to insert
+ * @return string Modified HTML string
+ */
+function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $content='' ) {
+	// Require that at least $source, $medium and $campaign
+	// be set to non-empty values:
+	if ( ! trim( $source ) || ! trim( $medium ) || ! trim( $campaign ) ) {
+		return $str;
+	}
+
+	$pattern = UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
+
+	if ( $pattern ) {
+		$dom = new DOMDocument();
+		$dom->loadHTML( $str );
+		foreach ( $dom->getElementsByTagName( 'a' ) as $elem ) {
+			$href = $elem->getAttribute( 'href' );
+			if ( preg_match( $pattern, $href ) ) {
+				$elem->setAttribute(
+					'href',
+					format_url_utm_params(
+						$href,
+						$source,
+						$medium,
+						$campaign,
+						$content
+					)
+				);
+			}
+		}
+		// Make sure `$dom->saveHTML()` doesn't return false:
+		$modified_str = $dom->saveHTML();
+		if ( $modified_str ) {
+			$str = $modified_str;
+		}
+	}
+
+	return $str;
+}
+
+
+/**
+ * Applies UTM params to links within the provided content
+ * using the regex pattern provided via plugin options.
+ *
+ * Assumes that the current global post metadata for an email
+ * should be referenced when retrieving UTM params to apply.
+ *
+ * @since 1.1.7
+ * @author Jo Dickson
+ * @param string $str Arbitrary HTML string
+ * @return string Modified HTML string
+ */
+function apply_email_link_utm_params( $str ) {
+	global $post;
+	if ( ! $post || ! $post instanceof WP_Post || $post->post_type !== 'ucf-email' ) return $str;
+
+	$do_utm_replacments = get_field( 'email_enable_utms' );
+	if ( $do_utm_replacments !== true ) return $str;
+
+	$source   = get_field( 'email_utm_source' );
+	$medium   = get_field( 'email_utm_medium' );
+	$campaign = get_field( 'email_utm_campaign' );
+	$content  = get_field( 'email_utm_content' );
+
+	// Require that at least $source, $medium and $campaign
+	// be set to non-empty values:
+	if ( ! trim( $source ) || ! trim( $medium ) || ! trim( $campaign ) ) {
+		return $str;
+	}
+
+	return apply_link_utm_params(
+		$str,
+		$source,
+		$medium,
+		$campaign,
+		$content
+	);
+}
+
+
 /**
  * Filter to convert content into email friendly markup
  *
@@ -144,6 +290,8 @@ function convert_content_to_email_markup( $content ) {
 	$content = preg_replace('/<\/section>/', '', $content);
 
 	$content = htmlspecialchars_decode( htmlentities( $content ) );
+
+	$content = apply_email_link_utm_params( $content );
 
 	return $content;
 }
@@ -181,8 +329,8 @@ function get_email_header() {
 
 	$header = get_field( 'email_header' );
 
-	if( $header ) {
-	  $header = $header->post_content;
+	if ( $header ) {
+	  $header = apply_email_link_utm_params( $header->post_content );
 	} else {
 	  $header = '';
 	}
@@ -222,7 +370,7 @@ function get_email_signature() {
 	$signature = get_field( 'email_signature' );
 
 	if( $signature ) {
-	  $signature = $signature->post_content;
+	  $signature = apply_email_link_utm_params( $signature->post_content );
 	} else {
 	  $signature = '';
 	}
@@ -243,7 +391,7 @@ function get_email_footer() {
 	$footer = get_field( 'email_footer' );
 
 	if( $footer ) {
-	  $footer = $footer->post_content;
+	  $footer = apply_email_link_utm_params( $footer->post_content );
 	} else {
 	  $footer = '';
 	}
