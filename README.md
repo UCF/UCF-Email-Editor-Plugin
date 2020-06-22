@@ -34,6 +34,16 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.1.7 ###
+Enhancements:
+* Updated ACF fields for selecting an email header/signature/footer to filter available options by tag ("Email Header", "Email Signature", "Email Footer").
+* Added missing installation requirements and configuration steps to the readme.
+* Reduced TinyMCE and plaintext editor button options to align with elements currently supported in email markup.
+* Added ability to define and automatically insert UTM params into links on a per-email basis.
+
+Other:
+* Bumped minimum PHP requirement to 7.0 to support null coalescing operators.
+
 ### 1.1.6 ###
 Enhancements:
 * Added ability to hide the email title in the "blank" template.
