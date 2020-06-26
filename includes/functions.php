@@ -200,7 +200,7 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 
 	if ( $pattern ) {
 		$dom = new DomDocument();
-		$dom->loadHTML( $str, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$dom->loadHTML( $str );
 
 		foreach ( $dom->getElementsByTagName( 'a' ) as $elem ) {
 			$href = $elem->getAttribute( 'href' );
@@ -220,8 +220,12 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 
 		// Make sure `$dom->saveHTML()` doesn't return false:
 		$modified_str = $dom->saveHTML();
+
+		$start = strpos( $modified_str, '<body>' ) + 6;
+		$end = strpos( $modified_str, '</body>' ) - strlen( $modified_str );
+
 		if ( $modified_str ) {
-			$str = $modified_str;
+			$str = substr( $modified_str, $start, $end );
 		}
 	}
 
