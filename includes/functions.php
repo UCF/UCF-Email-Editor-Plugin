@@ -199,8 +199,9 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 	$pattern = UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
 
 	if ( $pattern ) {
-		$dom = new DOMDocument();
-		$dom->loadHTML( $str );
+		$dom = new DomDocument();
+		$dom->loadHTML( $str, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+
 		foreach ( $dom->getElementsByTagName( 'a' ) as $elem ) {
 			$href = $elem->getAttribute( 'href' );
 			if ( preg_match( $pattern, $href ) ) {
@@ -216,6 +217,7 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 				);
 			}
 		}
+
 		// Make sure `$dom->saveHTML()` doesn't return false:
 		$modified_str = $dom->saveHTML();
 		if ( $modified_str ) {
