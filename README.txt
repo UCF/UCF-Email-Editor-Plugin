@@ -2,7 +2,7 @@
 Contributors: ucfwebcom
 Requires at least: 4.9.7
 Tested up to: 5.3
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
@@ -40,6 +40,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 
 == Changelog ==
+
+= 1.1.8 =
+Bug Fixes:
+* Updated UTM parameter function to ensure invalid doctype and other HTML elements aren't incorrectly added.
 
 = 1.1.7 =
 Enhancements:

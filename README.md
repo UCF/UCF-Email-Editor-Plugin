@@ -34,6 +34,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.1.8 ###
+Bug Fixes:
+* Updated UTM parameter function to ensure invalid doctype and other HTML elements aren't incorrectly added.
+
 ### 1.1.7 ###
 Enhancements:
 * Updated ACF fields for selecting an email header/signature/footer to filter available options by tag ("Email Header", "Email Signature", "Email Footer").
