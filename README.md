@@ -34,6 +34,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.1.9 ###
+Enhancements:
+* Increased space between ol/ul list items.
+
 ### 1.1.8 ###
 Bug Fixes:
 * Updated UTM parameter function to ensure invalid doctype and other HTML elements aren't incorrectly added.
