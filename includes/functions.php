@@ -114,7 +114,7 @@ function convert_list_tags( $content, $type) {
  */
 function convert_li_tags( $content ) {
 
-	$li = '<li style="margin-bottom:5px;">';
+	$li = '<li style="margin-bottom:10px;">';
 
 	$content = preg_replace('/<li[^>]*>/', $li, $content);
 
