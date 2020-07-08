@@ -212,16 +212,4 @@
       padding-bottom: 20px !important;
     }
   }
-
-  <?php if ( is_admin_bar_showing() ) : ?>
-    body {
-      margin-top: 46px;
-    }
-
-    @media (min-width: 783px) {
-      body {
-        margin-top: 30px;
-      }
-    }
-  <?php endif; ?>
 </style>
