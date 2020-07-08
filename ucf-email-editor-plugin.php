@@ -16,10 +16,12 @@ define( 'UCF_EMAIL_EDITOR__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCF_EMAIL_EDITOR__PLUGIN_URL', plugins_url( basename( dirname( __FILE__ ) ) ) );
 define( 'UCF_EMAIL_EDITOR__PLUGIN_FILE', __FILE__ );
 define( 'UCF_EMAIL_EDITOR__STATIC_URL', plugins_url( 'static', __FILE__ ) );
+define( 'UCF_EMAIL_EDITOR__CSS_URL', UCF_EMAIL_EDITOR__STATIC_URL . '/css' );
 define( 'UCF_EMAIL_EDITOR__JS_URL', UCF_EMAIL_EDITOR__STATIC_URL . '/js' );
 define( 'UCF_EMAIL_EDITOR__IMG_URL', UCF_EMAIL_EDITOR__STATIC_URL . '/img' );
 
 
+include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/meta.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/admin.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/functions.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/ucf-email-editor-config.php';
