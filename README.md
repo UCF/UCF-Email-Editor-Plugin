@@ -34,6 +34,11 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.1.10 ###
+Enhancements:
+* Removed admin bar for logged-in users when viewing emails.
+* Adds WYSIWYG editor styles for Email posts that mimic the "blank" template.
+
 ### 1.1.9 ###
 Enhancements:
 * Increased space between ol/ul list items.
