@@ -200,7 +200,21 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 
 	if ( $pattern ) {
 		$dom = new DomDocument();
-		$dom->loadHTML( $str );
+		// Dumb hack that enforces correct character encoding
+		// for DomDocument->loadHTML().
+		//
+		// This logic makes the loose assumption that an HTML
+		// string ($str) that does not begin with a DOCTYPE
+		// declaration is an incomplete HTML document, and
+		// needs an encoding declaration added to it.
+		// Should be "good enough" for our use cases:
+		if ( substr( trim( $str ), 0, strlen( '<!DOCTYPE' ) !== '<!DOCTYPE' ) ) {
+			$loaded_str = '<?xml encoding="utf-8" ?>' . $str;
+		}
+		else {
+			$loaded_str = $str;
+		}
+		$dom->loadHTML( $loaded_str );
 
 		foreach ( $dom->getElementsByTagName( 'a' ) as $elem ) {
 			$href = $elem->getAttribute( 'href' );
