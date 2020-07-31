@@ -37,6 +37,7 @@ function get_table_close_markup() {
 	return ob_get_clean();
 }
 
+
 /**
  * Returns h2 open email markup
  *
@@ -55,6 +56,7 @@ function get_h2_open_markup() {
 	return ob_get_clean();
 }
 
+
 /**
  * Convert p tags to email markup
  *
@@ -69,6 +71,7 @@ function convert_p_tags( $content ) {
 
 	return $content;
 }
+
 
 /**
  * Convert h2 tags to email markup
@@ -85,6 +88,7 @@ function convert_h2_tags( $content ) {
 	return $content;
 }
 
+
 /**
  * Convert ul or ol tags to email markup
  *
@@ -94,15 +98,50 @@ function convert_h2_tags( $content ) {
  * @param string $type
  * @return string content
  */
-function convert_list_tags( $content, $type) {
+function convert_list_tags( $content, $type ) {
+	// Sanity check on $type value before proceeding
+	if ( ! in_array( $type, array( 'ul', 'ol' ) ) ) {
+		$type = 'ul';
+	}
 
-	$ul = '<' . $type .  ' style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
+	$dom        = get_dom_from_html_snippet( $content );
+	$table_dom  = get_dom_from_html_snippet( get_table_open_markup() . get_table_close_markup() );
+	$table_node = $table_dom->getElementsByTagName( 'table' )[0];
 
-	$content = preg_replace('/<' . $type .  '[^>]*>/', get_table_open_markup() . $ul, $content);
-	$content = preg_replace('/<\/' . $type .  '>/', '</' . $type .  '>' . get_table_close_markup(), $content);
+	foreach ( $dom->getElementsByTagName( $type ) as $elem ) {
+		// Assign inline styles to all list elements:
+		$css_styles = $dom->createAttribute( 'style' );
+		$css_styles->value = 'margin-top:0;margin-bottom:0;padding-bottom:0;';
+		$elem->appendChild( $css_styles );
+
+		// Wrap all outermost lists in a paragraph table:
+		if ( $elem->parentNode->nodeName !== 'li' ) {
+			// Get a new paragraph table node object:
+			$repl_table = $dom->importNode( $table_node->cloneNode( true ), true );
+
+			// Clone the list so we can copy its contents into
+			// the paragraph table:
+			$repl_table_content = $elem->cloneNode( true );
+
+			// Get the inner <td> of the paragraph table node,
+			// and add the copied list element to it:
+			$repl_table_td = $repl_table->getElementsByTagName( 'td' )[0];
+			$repl_table_td->appendChild( $repl_table_content );
+
+			// Finally, replace the list element with the
+			// new paragraph table:
+			$elem->parentNode->replaceChild( $repl_table, $elem );
+		}
+	}
+
+	$str = get_snippet_html_from_dom( $dom );
+	if ( $str ) {
+		$content = $str;
+	}
 
 	return $content;
 }
+
 
 /**
  * Convert li tags to email markup
