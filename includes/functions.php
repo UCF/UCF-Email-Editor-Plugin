@@ -109,13 +109,17 @@ function convert_list_tags( $content, $type ) {
 	$table_node = $table_dom->getElementsByTagName( 'table' )[0];
 
 	foreach ( $dom->getElementsByTagName( $type ) as $elem ) {
-		// Assign inline styles to all list elements:
+		// Assign inline styles to all list elements.
+		// Styles vary depending on if the list is a
+		// nested list:
 		$css_styles = $dom->createAttribute( 'style' );
-		$css_styles->value = 'margin-top:0;margin-bottom:0;padding-bottom:0;';
-		$elem->appendChild( $css_styles );
 
 		// Wrap all outermost lists in a paragraph table:
 		if ( $elem->parentNode->nodeName !== 'li' ) {
+			// Append top-level list styles first:
+			$css_styles->value = 'margin-top:0;margin-bottom:0;padding-bottom:5px;';
+			$elem->appendChild( $css_styles );
+
 			// Get a new paragraph table node object:
 			$repl_table = $dom->importNode( $table_node->cloneNode( true ), true );
 
@@ -131,6 +135,11 @@ function convert_list_tags( $content, $type ) {
 			// Finally, replace the list element with the
 			// new paragraph table:
 			$elem->parentNode->replaceChild( $repl_table, $elem );
+		}
+		// For nested lists, just modify styles:
+		else {
+			$css_styles->value = 'margin-top:0;margin-bottom:0;padding-top:10px;padding-bottom:0;';
+			$elem->appendChild( $css_styles );
 		}
 	}
 
@@ -153,7 +162,7 @@ function convert_list_tags( $content, $type ) {
  */
 function convert_li_tags( $content ) {
 
-	$li = '<li style="margin-bottom:10px;">';
+	$li = '<li style="margin:0;padding-top:5px;padding-bottom:5px;">';
 
 	$content = preg_replace('/<li[^>]*>/', $li, $content);
 
