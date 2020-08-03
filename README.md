@@ -34,6 +34,11 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.1.11 ###
+Bug Fixes:
+* Character encoding fix: added a fix to enforce the correct character encoding on HTML string partials passed to `DomDocument->loadHTML()` in `apply_link_utm_params()`.
+* Added missing support for nested lists (ol, ul) in email markup.
+
 ### 1.1.10 ###
 Enhancements:
 * Removed admin bar for logged-in users when viewing emails.
