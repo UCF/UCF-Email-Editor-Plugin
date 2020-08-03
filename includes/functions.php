@@ -117,7 +117,7 @@ function convert_list_tags( $content, $type ) {
 		// Wrap all outermost lists in a paragraph table:
 		if ( $elem->parentNode->nodeName !== 'li' ) {
 			// Append top-level list styles first:
-			$css_styles->value = 'margin-top:0;margin-bottom:0;padding-bottom:5px;';
+			$css_styles->value = 'margin-top:0;margin-bottom:10px;padding-bottom:0;';
 			$elem->appendChild( $css_styles );
 
 			// Get a new paragraph table node object:
@@ -138,7 +138,7 @@ function convert_list_tags( $content, $type ) {
 		}
 		// For nested lists, just modify styles:
 		else {
-			$css_styles->value = 'margin-top:0;margin-bottom:0;padding-top:10px;padding-bottom:0;';
+			$css_styles->value = 'margin-top:10px;margin-bottom:5px;padding-top:0;padding-bottom:0;';
 			$elem->appendChild( $css_styles );
 		}
 	}
@@ -162,7 +162,7 @@ function convert_list_tags( $content, $type ) {
  */
 function convert_li_tags( $content ) {
 
-	$li = '<li style="margin:0;padding-top:5px;padding-bottom:5px;">';
+	$li = '<li style="margin-top:5px;margin-bottom:10px;padding-top:0;padding-bottom:0;">';
 
 	$content = preg_replace('/<li[^>]*>/', $li, $content);
 
