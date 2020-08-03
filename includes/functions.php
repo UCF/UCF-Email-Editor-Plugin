@@ -37,6 +37,7 @@ function get_table_close_markup() {
 	return ob_get_clean();
 }
 
+
 /**
  * Returns h2 open email markup
  *
@@ -55,6 +56,7 @@ function get_h2_open_markup() {
 	return ob_get_clean();
 }
 
+
 /**
  * Convert p tags to email markup
  *
@@ -69,6 +71,7 @@ function convert_p_tags( $content ) {
 
 	return $content;
 }
+
 
 /**
  * Convert h2 tags to email markup
@@ -85,6 +88,7 @@ function convert_h2_tags( $content ) {
 	return $content;
 }
 
+
 /**
  * Convert ul or ol tags to email markup
  *
@@ -94,15 +98,59 @@ function convert_h2_tags( $content ) {
  * @param string $type
  * @return string content
  */
-function convert_list_tags( $content, $type) {
+function convert_list_tags( $content, $type ) {
+	// Sanity check on $type value before proceeding
+	if ( ! in_array( $type, array( 'ul', 'ol' ) ) ) {
+		$type = 'ul';
+	}
 
-	$ul = '<' . $type .  ' style="margin-top:0;margin-bottom:0;padding-bottom:0;">';
+	$dom        = get_dom_from_html_snippet( $content );
+	$table_dom  = get_dom_from_html_snippet( get_table_open_markup() . get_table_close_markup() );
+	$table_node = $table_dom->getElementsByTagName( 'table' )[0];
 
-	$content = preg_replace('/<' . $type .  '[^>]*>/', get_table_open_markup() . $ul, $content);
-	$content = preg_replace('/<\/' . $type .  '>/', '</' . $type .  '>' . get_table_close_markup(), $content);
+	foreach ( $dom->getElementsByTagName( $type ) as $elem ) {
+		// Assign inline styles to all list elements.
+		// Styles vary depending on if the list is a
+		// nested list:
+		$css_styles = $dom->createAttribute( 'style' );
+
+		// Wrap all outermost lists in a paragraph table:
+		if ( $elem->parentNode->nodeName !== 'li' ) {
+			// Append top-level list styles first:
+			$css_styles->value = 'margin-top:0;margin-bottom:10px;padding-bottom:0;';
+			$elem->appendChild( $css_styles );
+
+			// Get a new paragraph table node object:
+			$repl_table = $dom->importNode( $table_node->cloneNode( true ), true );
+
+			// Clone the list so we can copy its contents into
+			// the paragraph table:
+			$repl_table_content = $elem->cloneNode( true );
+
+			// Get the inner <td> of the paragraph table node,
+			// and add the copied list element to it:
+			$repl_table_td = $repl_table->getElementsByTagName( 'td' )[0];
+			$repl_table_td->appendChild( $repl_table_content );
+
+			// Finally, replace the list element with the
+			// new paragraph table:
+			$elem->parentNode->replaceChild( $repl_table, $elem );
+		}
+		// For nested lists, just modify styles:
+		else {
+			$css_styles->value = 'margin-top:10px;margin-bottom:5px;padding-top:0;padding-bottom:0;';
+			$elem->appendChild( $css_styles );
+		}
+	}
+
+	$str = get_snippet_html_from_dom( $dom );
+	if ( $str ) {
+		$content = $str;
+	}
 
 	return $content;
 }
+
 
 /**
  * Convert li tags to email markup
@@ -114,11 +162,62 @@ function convert_list_tags( $content, $type) {
  */
 function convert_li_tags( $content ) {
 
-	$li = '<li style="margin-bottom:10px;">';
+	$li = '<li style="margin-top:5px;margin-bottom:10px;padding-top:0;padding-bottom:0;">';
 
 	$content = preg_replace('/<li[^>]*>/', $li, $content);
 
 	return $content;
+}
+
+
+/**
+ * Given an arbitrary partial string of HTML, returns
+ * a DOMDocument object with that HTML loaded into it
+ * with correct character encoding.
+ *
+ * Assumes $html is an HTML snippet, not a complete
+ * HTML document (has no <html> or <body> tags).
+ *
+ * @since 1.1.11
+ * @author Jo Dickson
+ * @param string $html Arbitrary partial HTML string
+ * @return DOMDocument
+ */
+function get_dom_from_html_snippet( $html ) {
+	$dom = new DOMDocument();
+	// Dumb hack that enforces correct character encoding
+	// for DomDocument->loadHTML().
+	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $html );
+	return $dom;
+}
+
+
+/**
+ * Given a DOMDocument object, returns its HTML
+ * as a string.
+ *
+ * Removes wrapper `<body>` tags around the generated
+ * HTML, so it's assumed that whatever HTML was loaded
+ * into the DOMDocument was a snippet of HTML, and not
+ * a complete HTML document (has no <html> or <body> tags).
+ *
+ * @since 1.1.11
+ * @author Jo Dickson
+ * @param DOMDocument a DOMDocument with an HTML snippet already loaded into it
+ * @return string HTML snippet string
+ */
+function get_snippet_html_from_dom( $dom ) {
+	// Make sure `$dom->saveHTML()` doesn't return false:
+	$str = $dom->saveHTML() ?: '';
+
+	$start = strpos( $str, '<body>' ) + 6;
+	$end   = strpos( $str, '</body>' ) - strlen( $str );
+
+	if ( $str ) {
+		$str = substr( $str, $start, $end );
+	}
+
+	return $str;
 }
 
 
@@ -182,7 +281,7 @@ function format_url_utm_params( $url='', $source='', $medium='', $campaign='', $
  *
  * @since 1.1.7
  * @author Jo Dickson
- * @param string $str Arbitrary HTML string
+ * @param string $str Arbitrary partial HTML string
  * @param string $source Source UTM param to insert
  * @param string $medium Medium UTM param to insert
  * @param string $campaign Campaign UTM param to insert
@@ -199,8 +298,7 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 	$pattern = UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
 
 	if ( $pattern ) {
-		$dom = new DomDocument();
-		$dom->loadHTML( $str );
+		$dom = get_dom_from_html_snippet( $str );
 
 		foreach ( $dom->getElementsByTagName( 'a' ) as $elem ) {
 			$href = $elem->getAttribute( 'href' );
@@ -218,14 +316,9 @@ function apply_link_utm_params( $str, $source='', $medium='', $campaign='', $con
 			}
 		}
 
-		// Make sure `$dom->saveHTML()` doesn't return false:
-		$modified_str = $dom->saveHTML();
-
-		$start = strpos( $modified_str, '<body>' ) + 6;
-		$end = strpos( $modified_str, '</body>' ) - strlen( $modified_str );
-
+		$modified_str = get_snippet_html_from_dom( $dom );
 		if ( $modified_str ) {
-			$str = substr( $modified_str, $start, $end );
+			$str = $modified_str;
 		}
 	}
 
