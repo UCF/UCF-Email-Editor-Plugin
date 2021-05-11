@@ -167,6 +167,9 @@ function(plugin, args) {
 				// on the string twice
 				updatedUrl = decodeURIComponent(decodeURIComponent(updatedUrl));
 
+				// Avoid &amp;amp; situations
+				updatedUrl = updatedUrl.replace(/&amp;/g, '&');
+
 				url = updatedUrl;
 			}
 		}
