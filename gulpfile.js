@@ -3,19 +3,26 @@ const browserSync  = require('browser-sync').create();
 const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS     = require('gulp-clean-css');
+const babel        = require('gulp-babel');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
 const sassLint     = require('gulp-sass-lint');
+const uglify       = require('gulp-uglify');
 const readme       = require('gulp-readme-to-markdown');
 const merge        = require('merge');
+const browserify   = require('browserify');
+const source       = require('vinyl-source-stream');
+const buffer       = require('vinyl-buffer');
 
 
 let config = {
   src: {
-    scssPath: './src/scss'
+    scssPath: './src/scss',
+    jsPath: './src/js'
   },
   dist: {
-    cssPath: './static/css'
+    cssPath: './static/css',
+    jsPath: './static/js'
   },
   packagesPath: './node_modules',
   sync: false,
@@ -102,6 +109,33 @@ gulp.task('css', gulp.series('scss-lint-plugin', 'scss-build-email-editor-styles
 
 
 //
+// JavaScript
+//
+
+// Concat and uglify js files through babel
+gulp.task('js-build-sanitizehtml', () => {
+  // regeneratorRuntime must be included manually
+  // when passed along to browserify in order for
+  // things to process correctly and run in-browser
+  const b = browserify({
+    entries: [`${config.packagesPath}/regenerator-runtime/runtime.js`, `${config.packagesPath}/sanitize-html/index.js`],
+    debug: true,
+    standalone: 'sanitizeHtml'
+  });
+
+  return b.bundle()
+    .pipe(source('sanitize-html.min.js'))
+    .pipe(buffer())
+    .pipe(babel())
+    .pipe(uglify())
+    .pipe(gulp.dest(config.dist.jsPath));
+});
+
+// All js-related tasks
+gulp.task('js', gulp.series('js-build-sanitizehtml'));
+
+
+//
 // Documentation
 //
 
@@ -130,4 +164,4 @@ gulp.task('watch', (done) => {
 //
 // Default task
 //
-gulp.task('default', gulp.series('css', 'readme'));
+gulp.task('default', gulp.series('css', 'js', 'readme'));
