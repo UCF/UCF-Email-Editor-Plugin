@@ -21,8 +21,6 @@ The following templates can be overwritten in the plugin.
 
 == Installation Requirements ==
 
-This plugin is developed and tested against WordPress 4.9.7+ and PHP 5.4+.
-
 = Required plugins =
 These plugins _must_ be activated for the UCF-Email-Editor-Plugin to function properly.
 
