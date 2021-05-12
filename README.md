@@ -34,6 +34,12 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.2.0 ###
+Enhancements:
+* Ported over on-paste content sanitization from Today, which includes HTML element whitelisting, removal of empty elements, and replacement of Postmaster and Outlook Safelink redirects with their final URLs.
+* Renamed `mce_before_init_insert_formats()` to `mce_block_formats()`, and added checks to ensure it only takes effect on the Email CPT.
+* Removed the `header_image` plugin option, since it doesn't appear to be in use anywhere at this point.
+
 ### 1.1.11 ###
 Bug Fixes:
 * Character encoding fix: added a fix to enforce the correct character encoding on HTML string partials passed to `DomDocument->loadHTML()` in `apply_link_utm_params()`.

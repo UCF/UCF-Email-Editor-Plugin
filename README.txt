@@ -2,7 +2,7 @@
 Contributors: ucfwebcom
 Requires at least: 4.9.7
 Tested up to: 5.3
-Stable tag: 1.1.11
+Stable tag: 1.2.0
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
@@ -40,6 +40,12 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 
 == Changelog ==
+
+= 1.2.0 =
+Enhancements:
+* Ported over on-paste content sanitization from Today, which includes HTML element whitelisting, removal of empty elements, and replacement of Postmaster and Outlook Safelink redirects with their final URLs.
+* Renamed `mce_before_init_insert_formats()` to `mce_block_formats()`, and added checks to ensure it only takes effect on the Email CPT.
+* Removed the `header_image` plugin option, since it doesn't appear to be in use anywhere at this point.
 
 = 1.1.11 =
 Bug Fixes:
