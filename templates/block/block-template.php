@@ -17,7 +17,7 @@ $content = get_block_email_content();
 
 if ( $content ) {
 	foreach ( $content as $row ) {
-		echo block_email_display_row( $row );
+		echo block_display_row( $row );
 	}
 }
 ?>
