@@ -67,7 +67,7 @@ if ( ! class_exists( 'UCF_Email_PostType' ) ) {
 				'label'                 => __( $plural, self::$text_domain ),
 				'description'           => __( $plural, self::$text_domain ),
 				'labels'                => self::labels( $singular, $plural ),
-				'supports'              => array( 'title', 'editor', 'revisions', 'custom-fields', ),
+				'supports'              => array( 'title', 'editor', 'revisions', 'custom-fields', 'post-attributes',),
 				'taxonomies'            => array(),
 				'hierarchical'          => false,
 				'public'                => true,
