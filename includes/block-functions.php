@@ -2,9 +2,9 @@
 
 /**
  * Returns all email content data from the
- * Coronavirus email options feed.
+ * currently queried object.
  *
- * @since 3.3.0
+ * @since 1.3.0
  * @author Jim Barnes
  * @return object|false
  */
@@ -21,8 +21,8 @@ function block_get_email_content() {
  * Displays either a one-column or two-column row
  * of email content.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param object $row Row of email content data
  * @return void
  */
@@ -46,8 +46,8 @@ function block_display_row( $row ) {
  * Returns a component template part for the provided
  * row of email content.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param object $row Row of email content data
  * @param string $row_type Type of row that this component is being displayed in
  * @return void
@@ -78,8 +78,8 @@ function block_display_component( $row, $row_type='one_column_row' ) {
  * Returns data for the current row being looped through.
  * For use in row and component template parts.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @return object
  */
 function block_get_current_row() {
@@ -89,17 +89,17 @@ function block_get_current_row() {
 
 /**
  * Format WYSIWYG-generated paragraph content for use in
- * Coronavirus email HTML.
+ * block email HTML.
  *
  * Utilizes functions defined in the UCF Email Editor plugin.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
  */
 function block_format_paragraph_content( $content ) {
-	$current_date = current_datetime();
+	$utm_params = block_get_utm_params();
 
 	$content = convert_p_tags( $content );
 	$content = convert_list_tags( $content, 'ul' );
@@ -107,7 +107,7 @@ function block_format_paragraph_content( $content ) {
 	$content = convert_li_tags( $content );
 	$content = convert_heading_tags( $content, 'h2', '24px' );
 	$content = convert_heading_tags( $content, 'h3', '18px' );
-	$content = apply_link_utm_params( $content, $current_date->format( 'Y-m-d' ) ); // namespaced function--not Email Editor Plugin's function
+	$content = apply_link_utm_params( $content, $utm_params['source'], $utm_params['medium'], $utm_params['campaign'], $utm_params['content'] );
 	$content = block_escape_chars( $content );
 
 	return $content;
@@ -116,10 +116,10 @@ function block_format_paragraph_content( $content ) {
 
 /**
  * Formats WYSIWYG-generated deck content for use
- * in Coronavirus email HTML.
+ * in the block template HTML.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
  */
@@ -136,12 +136,10 @@ function block_format_deck_content( $content ) {
 
 
 /**
- * We need slightly different heading styles than what are
- * provided in the UCF Email Editor Plugin, so custom
- * heading markup is defined here.
+ * Generates the opening tag for an HTML heading.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param string $font_size Font size to apply to the generated markup
  * @return string Email-safe heading markup
  */
@@ -160,8 +158,8 @@ function get_heading_open_markup( $font_size='24px' ) {
 /**
  * Converts heading tags to email-safe markup.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param string $content Unmodified markup
  * @param string $heading_elem The heading element to replace (e.g. "h2", "h3")
  * @param string $font_size The font size to apply to the heading
@@ -178,8 +176,8 @@ function convert_heading_tags( $content, $heading_elem, $font_size ) {
 /**
  * Escapes string content suitable for use in email HTML.
  *
- * @since 3.3.0
- * @author Jo Dickson
+ * @since 1.3.0
+ * @author Jim Barnes
  * @param string Arbitrary string/HTML content
  * @return string Sanitized content
  */

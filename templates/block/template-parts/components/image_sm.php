@@ -1,6 +1,5 @@
 <?php
 
-$current_date = current_datetime();
 $row          = block_get_current_row();
 $thumbnail    = $row->image_file;
 $alt          = esc_attr( $row->alt_text );

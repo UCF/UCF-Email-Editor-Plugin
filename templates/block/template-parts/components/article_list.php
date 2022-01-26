@@ -1,6 +1,5 @@
 <?php
 
-$current_date = current_datetime();
 $row          = block_get_current_row();
 $utm_params   = block_get_utm_params();
 ?>
