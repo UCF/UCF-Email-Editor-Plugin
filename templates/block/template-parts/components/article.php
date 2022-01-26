@@ -1,6 +1,5 @@
 <?php
 
-$current_date = current_datetime();
 $row          = block_get_current_row();
 $thumbnail    = isset( $row->thumbnail ) ? $row->thumbnail->url : null;
 $title        = block_escape_chars( $row->article_title );
