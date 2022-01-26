@@ -2,7 +2,7 @@
 
 $current_date = current_datetime();
 $row          = block_get_current_row();
-$thumbnail    = $row->thumbnail;
+$thumbnail    = $row->image_file;
 $alt          = esc_attr( $row->alt_text );
 $href         = format_url_utm_params( $row->links_to, $current_date->format( 'Y-m-d' ) );
 
