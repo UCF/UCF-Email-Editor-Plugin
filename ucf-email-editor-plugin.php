@@ -26,6 +26,7 @@ include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/admin.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/functions.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/ucf-email-editor-config.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/ucf-email-posttype.php';
+include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'includes/block-functions.php';
 include_once UCF_EMAIL_EDITOR__PLUGIN_DIR . 'templates/templates.php';
 
 
