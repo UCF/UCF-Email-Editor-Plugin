@@ -4,7 +4,8 @@ $current_date = current_datetime();
 $row          = block_get_current_row();
 $thumbnail    = $row->image_file;
 $alt          = esc_attr( $row->alt_text );
-$href         = format_url_utm_params( $row->links_to, $current_date->format( 'Y-m-d' ) );
+$utm_params   = block_get_utm_params();
+$href         = format_url_utm_params( $row->links_to, $utm_params['source'], $utm_params['medium'], $utm_params['campaign'], $utm_params['content'] );
 
 if ( $thumbnail ):
 ?>

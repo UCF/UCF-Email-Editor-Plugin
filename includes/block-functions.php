@@ -186,3 +186,32 @@ function convert_heading_tags( $content, $heading_elem, $font_size ) {
 function block_escape_chars( $content ) {
 	return htmlspecialchars_decode( htmlentities( $content ) );
 }
+
+/**
+ * Returns an array of utm parameters for
+ * the currently queried object.
+ * @author Jim Barnes
+ * @since v1.3.0
+ * @return array
+ */
+function block_get_utm_params() {
+	$object_id = get_queried_object_id();
+
+	$retval = array(
+		'source'   => '',
+		'medium'   => '',
+		'campaign' => '',
+		'content'  => ''
+	);
+
+	if ( ! get_field( 'email_enable_utms', $object_id ) ) {
+		return $retval;
+	}
+
+	$retval['source']   = get_field( 'email_utm_source', $object_id );
+	$retval['medium']   = get_field( 'email_utm_medium', $object_id );
+	$retval['campaign'] = get_field( 'email_utm_campaign', $object_id );
+	$retval['content']  = get_field( 'email_utm_content', $object_id );
+
+	return $retval;
+}

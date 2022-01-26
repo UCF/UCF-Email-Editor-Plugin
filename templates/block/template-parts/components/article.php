@@ -5,7 +5,8 @@ $row          = block_get_current_row();
 $thumbnail    = isset( $row->thumbnail ) ? $row->thumbnail->url : null;
 $title        = block_escape_chars( $row->article_title );
 $deck         = block_format_deck_content( $row->article_deck );
-$href         = format_url_utm_params( $row->links_to, $current_date->format( 'Y-m-d' ) );
+$utm_params   = block_get_utm_params();
+$href         = format_url_utm_params( $row->links_to, $utm_params['source'], $utm_params['medium'], $utm_params['campaign'], $utm_params['content'] );
 ?>
 <tr>
 	<td style="text-align: left; padding-bottom: 40px;" align="left">

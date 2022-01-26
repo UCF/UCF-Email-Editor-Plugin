@@ -2,6 +2,7 @@
 
 $current_date = current_datetime();
 $row          = block_get_current_row();
+$utm_params   = block_get_utm_params();
 ?>
 <tr>
 	<td style="text-align: left; padding-bottom: 10px;" align="left">
@@ -12,7 +13,7 @@ $row          = block_get_current_row();
 					$thumbnail = isset( $row->thumbnail ) ? $row->thumbnail->url : null;
 					$title     = block_escape_chars( $article->article_title );
 					$deck      = block_format_deck_content( $article->article_deck );
-					$href      = format_url_utm_params( $article->links_to, $current_date->format( 'Y-m-d' ) );
+					$href      = format_url_utm_params( $article->links_to, $utm_params['source'], $utm_params['medium'], $utm_params['campaign'], $utm_params['content'] );
 				?>
 				<tr>
 					<td style="text-align: left; padding-bottom: 30px;" align="left">
