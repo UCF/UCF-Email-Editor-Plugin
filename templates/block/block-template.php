@@ -13,7 +13,7 @@
 <?php include_once( 'header.php' ); ?>
 
 <?php
-$content = get_block_email_content();
+$content = block_get_email_content();
 
 if ( $content ) {
 	foreach ( $content as $row ) {

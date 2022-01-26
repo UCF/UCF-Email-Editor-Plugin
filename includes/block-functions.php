@@ -1,24 +1,6 @@
 <?php
 
 /**
- * Fetches Coronavirus email options from the
- * Coronavirus website.
- *
- * @since 3.3.0
- * @author Jim Barnes
- * @return object|false
- */
-function fetch_options_data() {
-	$options = get_fields( 'impact_options' );
-
-	// Convert it to and then back from a JSON
-	// object, to objectify the array.
-	$json_array = json_encode( $options );
-	return json_decode( $json_array );
-}
-
-
-/**
  * Returns all email content data from the
  * Coronavirus email options feed.
  *
@@ -26,11 +8,12 @@ function fetch_options_data() {
  * @author Jim Barnes
  * @return object|false
  */
-function get_block_email_content() {
-	$options = fetch_options_data();
-	if ( ! $options || ! isset( $options->email_content ) ) return false;
+function block_get_email_content() {
+	$object_id = get_queried_object_id();
+	$content   = get_field( 'email_content', $object_id );
+	if ( ! $content  ) return false;
 
-	return $options->email_content;
+	return json_decode( json_encode( $content ) );
 }
 
 
@@ -50,12 +33,12 @@ function block_display_row( $row ) {
 	}
 
 	// Pass along $row data to the template part:
-	set_query_var( 'gmucf_impact_current_row', $row );
+	set_query_var( 'block_email_current_row', $row );
 
-	get_template_part( "template-parts/impact/rows/$row_type" );
+	include( UCF_EMAIL_EDITOR__PLUGIN_DIR . "templates/block/template-parts/rows/$row_type.php" );
 
 	// Clean up afterwards:
-	set_query_var( 'gmucf_impact_current_row', false );
+	set_query_var( 'block_email_current_row', false );
 }
 
 
@@ -69,7 +52,7 @@ function block_display_row( $row ) {
  * @param string $row_type Type of row that this component is being displayed in
  * @return void
  */
-function display_component( $row, $row_type='one_column_row' ) {
+function block_display_component( $row, $row_type='one_column_row' ) {
 	$component = $row->acf_fc_layout ?? '';
 	if ( ! $component ) return;
 
@@ -82,12 +65,12 @@ function display_component( $row, $row_type='one_column_row' ) {
 	}
 
 	// Pass along $row data to the template part:
-	set_query_var( 'gmucf_impact_current_row', $row );
+	set_query_var( 'block_email_current_row', $row );
 
-	get_template_part( "template-parts/impact/components/$component" );
+	include( UCF_EMAIL_EDITOR__PLUGIN_DIR . "templates/block/template-parts/components/$component.php" );
 
 	// Clean up afterwards:
-	set_query_var( 'gmucf_impact_current_row', false );
+	set_query_var( 'block_email_current_row', false );
 }
 
 
@@ -99,8 +82,8 @@ function display_component( $row, $row_type='one_column_row' ) {
  * @author Jo Dickson
  * @return object
  */
-function get_current_row() {
-	return get_query_var( 'gmucf_block_current_row' );
+function block_get_current_row() {
+	return get_query_var( 'block_email_current_row' );
 }
 
 
@@ -115,7 +98,7 @@ function get_current_row() {
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
  */
-function format_paragraph_content( $content ) {
+function block_format_paragraph_content( $content ) {
 	$current_date = current_datetime();
 
 	$content = convert_p_tags( $content );
@@ -125,7 +108,7 @@ function format_paragraph_content( $content ) {
 	$content = convert_heading_tags( $content, 'h2', '24px' );
 	$content = convert_heading_tags( $content, 'h3', '18px' );
 	$content = apply_link_utm_params( $content, $current_date->format( 'Y-m-d' ) ); // namespaced function--not Email Editor Plugin's function
-	$content = escape_chars( $content );
+	$content = block_escape_chars( $content );
 
 	return $content;
 }
@@ -140,13 +123,13 @@ function format_paragraph_content( $content ) {
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
  */
-function format_deck_content( $content ) {
+function block_format_deck_content( $content ) {
 	// Strip <p> tags entirely (no replacement, since decks may
 	// be wrapped within a link)
 	$content = preg_replace( '/<p[^>]*>/', '', $content );
 	$content = preg_replace( '/<\/p>/', '', $content );
 
-	$content = escape_chars( $content );
+	$content = block_escape_chars( $content );
 
 	return $content;
 }
@@ -200,6 +183,6 @@ function convert_heading_tags( $content, $heading_elem, $font_size ) {
  * @param string Arbitrary string/HTML content
  * @return string Sanitized content
  */
-function escape_chars( $content ) {
+function block_escape_chars( $content ) {
 	return htmlspecialchars_decode( htmlentities( $content ) );
 }
