@@ -26,7 +26,7 @@ $href         = format_url_utm_params( $row->links_to, $utm_params['source'], $u
 				<?php endif; ?>
 				<?php if ( $title ): ?>
 				<tr>
-					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 10px; font-size: 24px; font-weight: bold; line-height: 1.2;" align="left">
+					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; text-align: left; padding-bottom: 10px; font-size: 18px; font-weight: bold; line-height: 1.2;" align="left">
 						<?php if ( $href ): ?>
 						<a href="<?php echo $href; ?>" style="color: #000; text-decoration: none;">
 						<?php endif; ?>
