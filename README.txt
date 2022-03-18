@@ -2,7 +2,7 @@
 Contributors: ucfwebcom
 Requires at least: 4.9.7
 Tested up to: 5.3
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
@@ -38,6 +38,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 
 == Changelog ==
+
+= 1.3.0 =
+Enhancements:
+* Adds a block email editor and template for building out emails.
 
 = 1.2.0 =
 Enhancements:

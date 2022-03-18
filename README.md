@@ -32,6 +32,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.3.0 ###
+Enhancements:
+* Adds a block email editor and template for building out emails.
+
 ### 1.2.0 ###
 Enhancements:
 * Ported over on-paste content sanitization from Today, which includes HTML element whitelisting, removal of empty elements, and replacement of Postmaster and Outlook Safelink redirects with their final URLs.
