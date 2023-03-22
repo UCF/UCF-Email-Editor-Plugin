@@ -32,6 +32,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.3.1 ###
+Enhancements:
+* Added composer file.
+
 ### 1.3.0 ###
 Enhancements:
 * Adds a block email editor and template for building out emails.

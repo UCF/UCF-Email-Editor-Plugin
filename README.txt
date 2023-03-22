@@ -1,8 +1,8 @@
 === UCF Email Editor Plugin ===
 Contributors: ucfwebcom
 Requires at least: 4.9.7
-Tested up to: 5.3
-Stable tag: 1.3.0
+Tested up to: 6.1
+Stable tag: 1.3.1
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
@@ -38,6 +38,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 
 == Changelog ==
+
+= 1.3.1 =
+Enhancements:
+* Added composer file.
 
 = 1.3.0 =
 Enhancements:

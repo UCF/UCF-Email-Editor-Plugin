@@ -1,0 +1,8 @@
+{
+    "name": "ucf/ucf-email-editor-plugin",
+    "description": "WordPress Plugin to add an email editor for creating email html content.",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
