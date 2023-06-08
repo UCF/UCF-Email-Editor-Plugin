@@ -1,10 +1,11 @@
 <?php
 //Enter code here to get the title and header image information
-$object_id      = get_queried_object_id();
-$fields         = (object)get_fields( $object_id );
-$title          = $fields->title;
-$header_img_url = $fields->header_image;
-$header_img_alt = $fields->header_image_alt;
+$object_id       = get_queried_object_id();
+$fields          = (object)get_fields( $object_id );
+$title           = $fields->title;
+$header_img_url  = $fields->header_image;
+$header_img_link = isset( $fields->header_image_link ) ? $fields->header_image_link : $fields->header_image_url;
+$header_img_alt  = $fields->header_image_alt;
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,8 +34,8 @@ $header_img_alt = $fields->header_image_alt;
 							<?php if ( $header_img_url ): ?>
 							<tr>
 								<td style="text-align: left;" align="left">
-									<?php if ( $header_img_url ): ?>
-									<a href="<?php echo $header_img_url; ?>">
+									<?php if ( $header_img_link ): ?>
+									<a href="<?php echo $header_img_link; ?>">
 									<?php endif; ?>
 										<img class="img-fluid" width="640" src="<?php echo $header_img_url; ?>" alt="<?php echo esc_attr( $header_image_alt ); ?>" style="max-width: 100%;">
 									<?php if ( $header_img_url ): ?>

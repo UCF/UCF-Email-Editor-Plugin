@@ -32,6 +32,10 @@ After installing this plugin and [all necessary dependencies](#installation-requ
 
 ## Changelog ##
 
+### 1.3.2 ###
+Bug Fixes:
+* Corrected a bug where the header_image_link field is not being used correctly.
+
 ### 1.3.1 ###
 Enhancements:
 * Added composer file.
